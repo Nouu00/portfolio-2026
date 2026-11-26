@@ -83,6 +83,7 @@ i,em{font-style:normal}
 .cover{margin:0 auto;width:min(calc(100% - var(--pad)*2),1180px);height:min(68vh,46vw);overflow:hidden;position:relative;clip-path:inset(12% 8% 12% 8%);transition:clip-path 1.8s var(--ease)}
 .cover.in{clip-path:inset(0 0 0 0)}
 .cover img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;will-change:transform}
+.cover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2vw,32px);padding:14vh var(--pad) 4vh}
 .stat b{display:block;font-size:clamp(44px,5.4vw,96px);font-weight:300;letter-spacing:-.05em;line-height:1}
 .stat b small{font-size:.32em;color:var(--mute);margin-left:.2em;letter-spacing:0}
@@ -177,9 +178,12 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 
 .phone{border-radius:34px;border:7px solid #16171c;overflow:hidden;box-shadow:0 30px 60px -28px rgba(30,50,80,.35);background:#fff}
 .phone img{display:block}
+.phone video{display:block;width:100%;aspect-ratio:390/844;object-fit:cover}
 .screen .fig.ph{max-width:300px}
 .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,32px);padding:10vh var(--pad) 0;max-width:1240px;margin:0 auto}
 .flow figure{margin:0}
+.flow.f3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1000px}
+@media(max-width:760px){.flow.f3{grid-template-columns:1fr;max-width:300px}}
 .flow figcaption{margin-top:16px;font-size:15px;line-height:1.6;color:var(--mute)}
 .flow figcaption b{display:block;color:var(--ink);font-weight:500;font-size:17px;margin-bottom:4px}
 .flow figcaption b i{font-style:normal;color:var(--blue);margin-right:8px}
@@ -191,6 +195,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .dev .scr{position:relative;width:100%;height:100%;border-radius:13%/6%;overflow:hidden;background:#fff;isolation:isolate}
 .dev .scr > img{position:absolute;left:0;top:0;width:100%;display:block}
 .dev .scr > img.b{opacity:0}
+.dev .scr > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .dev.scroll .scr > img{animation:dscroll var(--t,12s) cubic-bezier(.65,0,.35,1) infinite}
 @keyframes dscroll{0%,14%{transform:none}46%,62%{transform:translateY(var(--d))}94%,100%{transform:none}}
 .dev.xf .scr > img.b{animation:dxf var(--t,7s) ease-in-out infinite}
@@ -213,7 +218,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .ophero{position:relative;margin:0 auto;width:min(calc(100% - var(--pad)*2),1180px);height:min(78vh,62vw);display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,48px);perspective:1800px}
 .ophero .dev{--w:clamp(150px,19vw,280px)}
 .ophero .d1{transform:rotateY(18deg) rotateZ(-3deg) translateY(4%)}
-.ophero .d2{--w:clamp(170px,22vw,320px);z-index:2}
+.ophero .d2{--w:clamp(200px,24vw,330px);z-index:2}
 .ophero .d3{transform:rotateY(-18deg) rotateZ(3deg) translateY(4%)}
 .ophero .wrap3d{transition:transform 1.4s var(--ease);will-change:transform}
 .screen .fig.dv{clip-path:none;justify-self:end;max-width:none}
@@ -282,9 +287,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 </section>
 
 <div class="ophero rv">
-  <div class="wrap3d d1"><div class="dev float scroll" style="--d:-28.4%;--t:13s;animation-delay:-2s"><div class="scr"><img src="images/op2-points.png" alt="點數專區"></div></div></div>
   <div class="wrap3d d2"><div class="dev float scroll" style="--d:-47.5%;--t:14s"><div class="scr"><img src="images/op2-home.png" alt="首頁"></div></div></div>
-  <div class="wrap3d d3"><div class="dev float xf" style="--t:8s;animation-delay:-4s"><div class="scr"><img src="images/op2-pay.png" alt="付款碼"><img class="b" src="images/op2-paid.png" alt="付款成功"></div></div></div>
 </div>
 
 <section class="stats">
@@ -385,24 +388,20 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
   <div class="sh rv"><span class="no">03</span><h3>介面設計</h3></div>
 </section>
 <section class="screen">
-  <div class="fig dv"><div class="dev sheet" style="--t:7s"><div class="scr"><img src="images/op2-home.png" alt="首頁"><div class="scrim"></div><span class="tap" style="left:85%;top:22.5%"></span><img class="sh" src="images/op2-barcode.png" alt="會員條碼"></div></div></div>
+  <div class="fig dv"><div class="dev"><div class="scr"><video src="images/op-v-home.mp4" poster="images/op-v-home.jpg" autoplay muted loop playsinline aria-label="首頁叫出會員條碼操作"></video></div></div></div>
   <div class="rv"><h4>首頁</h4><h3>資訊層級重構</h3><p>Banner 置頂，保留曝光又不打斷操作；點數、集點卡、票券與條碼集中在會員區，點一下就叫出條碼。</p><div class="pain"><span>解決的痛點</span><em>首頁資訊混亂、廣告干擾操作、折抵條碼藏太深</em></div></div>
 </section>
 <section class="screen r">
-  <div class="fig dv"><div class="dev scroll" style="--d:-47.5%;--t:12s"><div class="scr"><img src="images/op2-home.png" alt="首頁捲動"></div></div></div>
-  <div class="rv"><h4>首頁</h4><h3>常用功能與推薦</h3><p>常用功能區加大並整合原本的服務頁；用個人化推薦取代無差別廣告。</p><div class="pain"><span>解決的痛點</span><em>常用功能太小，推薦只有熱銷商品</em></div></div>
-</section>
-<section class="screen">
   <div class="fig dv"><div class="dev"><div class="scr"><img src="images/op2-brand.png" alt="品牌館"></div></div></div>
   <div class="rv"><h4>品牌館</h4><h3>獨立專區</h3><p>品牌商品、活動與內容集中到新的 Tab，和功能型內容分開。</p><div class="pain"><span>解決的痛點</span><em>品牌資訊零碎，混在首頁干擾操作</em></div></div>
 </section>
-<section class="screen r">
-  <div class="fig dv"><div class="dev xf" style="--t:7s"><div class="scr"><img src="images/op2-pay.png" alt="付款碼"><span class="tap" style="left:50%;top:60%"></span><img class="b" src="images/op2-paid.png" alt="付款成功"></div></div></div>
+<section class="screen">
+  <div class="fig dv"><div class="dev"><div class="scr"><video src="images/op-v-pay.mp4" poster="images/op-v-pay.jpg" autoplay muted loop playsinline aria-label="付款碼結帳操作"></video></div></div></div>
   <div class="rv"><h4>付款碼</h4><h3>重構支付流程</h3><p>不用點開就能看到各支付方式的餘額，在結帳頁直接切換付款方式，並可用點數折抵。</p><div class="pain"><span>解決的痛點</span><em>看不到餘額，切換要退出重來</em></div></div>
 </section>
-<section class="screen">
-  <div class="fig dv"><div class="dev scroll" style="--d:-28.4%;--t:11s"><div class="scr"><img src="images/op2-points.png" alt="點數專區"></div></div></div>
-  <div class="rv"><h4>票券</h4><h3>兌換體驗重整</h3><p>「我的票券」入口前移，依使用行為與收藏做個人化推薦，集點進度一眼看到。</p><div class="pain"><span>解決的痛點</span><em>入口太深、推薦不個人化</em></div></div>
+<section class="screen r">
+  <div class="fig dv"><div class="dev"><div class="scr"><video src="images/op-v-redeem.mp4" poster="images/op-v-redeem.jpg" autoplay muted loop playsinline aria-label="點數兌換到結帳操作"></video></div></div></div>
+  <div class="rv"><h4>票券</h4><h3>從兌換到結帳一次完成</h3><p>收藏商品直接用點數兌換，勾選即將過期的票券，接著出示付款碼完成結帳；「我的票券」入口前移，集點進度一眼看到。</p><div class="pain"><span>解決的痛點</span><em>入口太深、兌換與付款分散</em></div></div>
 </section>
 
 <section class="step">
@@ -425,14 +424,6 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
   <div class="fig dv"><div class="dev wipe" style="--t:8s"><div class="scr"><img src="images/op2-brand-old.png" alt="品牌館・測試前"><img class="b" src="images/op2-brand.png" alt="品牌館・測試後"><span class="line"></span></div><div class="tags"><span>測試前</span><b>測試後</b></div></div></div>
   <div class="rv"><h4>迭代</h4><h3>品牌館</h3><p>使用者更傾向用「商品需求」來瀏覽，而不是先認識品牌。</p><div class="pain"><span>調整</span><em>新增以商品種類為主的分類，幫助瀏覽與探索</em></div></div>
 </section>
-<div class="flow4" id="flow4">
-  <figure><div class="dev"><div class="scr"><img src="images/op2-product.png" alt="商品頁"></div></div><figcaption><b><i>1</i>選擇商品</b>收藏商品可直接用點數兌換</figcaption></figure>
-  <figure><div class="dev"><div class="scr"><img src="images/op2-tickets.png" alt="我的票券"></div></div><figcaption><b><i>2</i>勾選票券</b>即將過期的票券優先，可轉贈或外送</figcaption></figure>
-  <figure><div class="dev"><div class="scr"><img src="images/op2-pay.png" alt="付款碼"></div></div><figcaption><b><i>3</i>出示付款碼</b>餘額與點數折抵在同一頁</figcaption></figure>
-  <figure><div class="dev"><div class="scr"><img src="images/op2-paid.png" alt="付款成功"></div></div><figcaption><b><i>4</i>完成</b>獲得點數即時回饋</figcaption></figure>
-  <div class="bar4"><i></i></div>
-</div>
-<p class="rv" style="text-align:center;margin-top:28px;font-size:16px;color:var(--mute)">其他核心流程也都能更流暢地完成</p>
 
 <section class="sec">
   <h2 class="rv"><i>Result</i>成果</h2>

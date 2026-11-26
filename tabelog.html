@@ -178,9 +178,12 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 
 .phone{border-radius:34px;border:7px solid #16171c;overflow:hidden;box-shadow:0 30px 60px -28px rgba(30,50,80,.35);background:#fff}
 .phone img{display:block}
+.phone video{display:block;width:100%;aspect-ratio:390/844;object-fit:cover}
 .screen .fig.ph{max-width:300px}
 .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,32px);padding:10vh var(--pad) 0;max-width:1240px;margin:0 auto}
 .flow figure{margin:0}
+.flow.f3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1000px}
+@media(max-width:760px){.flow.f3{grid-template-columns:1fr;max-width:300px}}
 .flow figcaption{margin-top:16px;font-size:15px;line-height:1.6;color:var(--mute)}
 .flow figcaption b{display:block;color:var(--ink);font-weight:500;font-size:17px;margin-bottom:4px}
 .flow figcaption b i{font-style:normal;color:var(--blue);margin-right:8px}
@@ -192,6 +195,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .dev .scr{position:relative;width:100%;height:100%;border-radius:13%/6%;overflow:hidden;background:#fff;isolation:isolate}
 .dev .scr > img{position:absolute;left:0;top:0;width:100%;display:block}
 .dev .scr > img.b{opacity:0}
+.dev .scr > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .dev.scroll .scr > img{animation:dscroll var(--t,12s) cubic-bezier(.65,0,.35,1) infinite}
 @keyframes dscroll{0%,14%{transform:none}46%,62%{transform:translateY(var(--d))}94%,100%{transform:none}}
 .dev.xf .scr > img.b{animation:dxf var(--t,7s) ease-in-out infinite}
@@ -214,7 +218,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .ophero{position:relative;margin:0 auto;width:min(calc(100% - var(--pad)*2),1180px);height:min(78vh,62vw);display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,48px);perspective:1800px}
 .ophero .dev{--w:clamp(150px,19vw,280px)}
 .ophero .d1{transform:rotateY(18deg) rotateZ(-3deg) translateY(4%)}
-.ophero .d2{--w:clamp(170px,22vw,320px);z-index:2}
+.ophero .d2{--w:clamp(200px,24vw,330px);z-index:2}
 .ophero .d3{transform:rotateY(-18deg) rotateZ(3deg) translateY(4%)}
 .ophero .wrap3d{transition:transform 1.4s var(--ease);will-change:transform}
 .screen .fig.dv{clip-path:none;justify-self:end;max-width:none}
@@ -390,8 +394,20 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
   <div class="rv"><h4>和旅伴留言</h4><h3>候選清單可共編、可討論</h3><p>旅伴可以投「我想去」、寫共同筆記，並直接在候選餐廳下方留言、@ 標記。</p><div class="pain"><span>對應痛點</span><em>痛點 ③②：兒童椅等需求在這裡一起確認</em></div></div>
 </section>
 <section class="screen r">
+  <div class="fig ph"><div class="phone"><img src="images/tb-decided.jpg" alt="決定的店直接放回行程"></div></div>
+  <div class="rv"><h4>行程日視圖</h4><h3>決定的店直接放回行程</h3><p>已預約的午餐、還在投票的晚餐和步行時間排在同一天裡，其他候選收成備案。</p><div class="pain"><span>對應痛點</span><em>痛點 ①③：一眼看出哪餐還沒定</em></div></div>
+</section>
+<section class="screen">
+  <div class="fig ph"><div class="phone"><img src="images/tb-notify.jpg" alt="用推播提醒出發"></div></div>
+  <div class="rv"><h4>時間快到</h4><h3>用推播提醒出發</h3><p>預約前推播人數、兒童椅與建議出發時間，可直接開始導航或通知店家延後。</p><div class="pain"><span>對應痛點</span><em>痛點 ②：不用再自己算時間</em></div></div>
+</section>
+<section class="screen r">
   <div class="fig ph"><div class="phone"><img src="images/tb-arrive.jpg" alt="給店員看的日文訊息"></div></div>
   <div class="rv"><h4>到達店家</h4><h3>給店員看的日文訊息</h3><p>抵達後顯示預約內容，並自動產生給店員看的日文句子，例如需要一張兒童椅。</p><div class="pain"><span>對應痛點</span><em>痛點 ②：同行需求一路帶到現場</em></div></div>
+</section>
+<section class="screen">
+  <div class="fig ph"><div class="phone"><img src="images/tb-after.jpg" alt="評價後帶回下一餐"></div></div>
+  <div class="rv"><h4>吃完後</h4><h3>評價後帶回下一餐</h3><p>用星等與標籤快速評價，接著推薦順路的下一站，一鍵加入行程。</p><div class="pain"><span>對應痛點</span><em>讓找餐廳的循環接回行程</em></div></div>
 </section>
 
 <a class="next" href="aidentity.html"><small>Next project</small><b>(AI)dentity <i>→</i></b></a>

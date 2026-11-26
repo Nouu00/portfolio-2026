@@ -178,9 +178,12 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 
 .phone{border-radius:34px;border:7px solid #16171c;overflow:hidden;box-shadow:0 30px 60px -28px rgba(30,50,80,.35);background:#fff}
 .phone img{display:block}
+.phone video{display:block;width:100%;aspect-ratio:390/844;object-fit:cover}
 .screen .fig.ph{max-width:300px}
 .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,32px);padding:10vh var(--pad) 0;max-width:1240px;margin:0 auto}
 .flow figure{margin:0}
+.flow.f3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1000px}
+@media(max-width:760px){.flow.f3{grid-template-columns:1fr;max-width:300px}}
 .flow figcaption{margin-top:16px;font-size:15px;line-height:1.6;color:var(--mute)}
 .flow figcaption b{display:block;color:var(--ink);font-weight:500;font-size:17px;margin-bottom:4px}
 .flow figcaption b i{font-style:normal;color:var(--blue);margin-right:8px}
@@ -192,6 +195,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .dev .scr{position:relative;width:100%;height:100%;border-radius:13%/6%;overflow:hidden;background:#fff;isolation:isolate}
 .dev .scr > img{position:absolute;left:0;top:0;width:100%;display:block}
 .dev .scr > img.b{opacity:0}
+.dev .scr > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .dev.scroll .scr > img{animation:dscroll var(--t,12s) cubic-bezier(.65,0,.35,1) infinite}
 @keyframes dscroll{0%,14%{transform:none}46%,62%{transform:translateY(var(--d))}94%,100%{transform:none}}
 .dev.xf .scr > img.b{animation:dxf var(--t,7s) ease-in-out infinite}
@@ -214,7 +218,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .ophero{position:relative;margin:0 auto;width:min(calc(100% - var(--pad)*2),1180px);height:min(78vh,62vw);display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,48px);perspective:1800px}
 .ophero .dev{--w:clamp(150px,19vw,280px)}
 .ophero .d1{transform:rotateY(18deg) rotateZ(-3deg) translateY(4%)}
-.ophero .d2{--w:clamp(170px,22vw,320px);z-index:2}
+.ophero .d2{--w:clamp(200px,24vw,330px);z-index:2}
 .ophero .d3{transform:rotateY(-18deg) rotateZ(3deg) translateY(4%)}
 .ophero .wrap3d{transition:transform 1.4s var(--ease);will-change:transform}
 .screen .fig.dv{clip-path:none;justify-self:end;max-width:none}
@@ -317,25 +321,16 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 
 <section class="step">
   <div class="sh rv"><span class="no">01</span><h3>主流程：今晚要丟垃圾</h3></div>
-  <p class="sb rv">把查規則、算時間、找地點拆成四個畫面，使用者只需要跟著往下走。</p>
+  <p class="sb rv">以下為實際操作錄影：把查規則、算時間、找地點拆成幾個畫面，跟著往下走就能完成。</p>
 </section>
-<div class="flow">
-  <figure class="rv"><div class="phone"><img src="images/tt-home.jpg" alt="首頁"></div><figcaption><b><i>1</i>今天要丟什麼？</b>首頁只問一件事，上方顯示今天收什麼、我的垃圾車幾點到</figcaption></figure>
-  <figure class="rv"><div class="phone"><img src="images/tt-list.jpg" alt="選擇品項"></div><figcaption><b><i>2</i>勾選手上的東西</b>大圖格分成每天、偶爾、大型三組，也可以搜尋或拍照加入</figcaption></figure>
-  <figure class="rv"><div class="phone"><img src="images/tt-plan.jpg" alt="丟垃圾清單"></div><figcaption><b><i>3</i>我的丟垃圾清單</b>依勾選排出：準備袋子、先處理、出門丟、特別處理</figcaption></figure>
-  <figure class="rv"><div class="phone"><img src="images/tt-talk.jpg" alt="現場溝通卡"></div><figcaption><b><i>4</i>現場溝通卡</b>到了垃圾車旁，把中文大字給隊員看；卡片可轉 180 度</figcaption></figure>
+<div class="flow f3">
+  <figure class="rv"><div class="phone"><video src="images/tt-v-setup.mp4" poster="images/tt-v-setup.jpg" autoplay muted loop playsinline aria-label="首次設定操作"></video></div><figcaption><b><i>1</i>首次設定</b>定位一次，選好我的垃圾車，之後打開就能用</figcaption></figure>
+  <figure class="rv"><div class="phone"><video src="images/tt-v-list.mp4" poster="images/tt-v-list.jpg" autoplay muted loop playsinline aria-label="勾選品項並產生清單操作"></video></div><figcaption><b><i>2</i>勾選，產生清單</b>首頁只問今天要丟什麼，勾好後依序排出準備、處理、出門丟</figcaption></figure>
+  <figure class="rv"><div class="phone"><video src="images/tt-v-item.mp4" poster="images/tt-v-item.jpg" autoplay muted loop playsinline aria-label="品項步驟與溝通卡操作"></video></div><figcaption><b><i>3</i>一步一步做</b>每個品項三個步驟；到了垃圾車旁，把溝通卡給隊員看</figcaption></figure>
 </div>
 
 <section class="step">
   <div class="sh rv"><span class="no">02</span><h3>介面設計</h3></div>
-</section>
-<section class="screen">
-  <div class="fig ph"><div class="phone"><img src="images/tt-setup.jpg" alt="只設定一次，之後打開就能用"></div></div>
-  <div class="rv"><h4>首次設定</h4><h3>只設定一次，之後打開就能用</h3><p>用一次定位，找出最近 3 個垃圾車停靠點、所屬里的清潔隊電話、錯過時的限時收受點與專用袋代售點。</p><div class="pain"><span>設計重點</span><em>位置只在手機上使用；只保存行政區、里與選定的停靠點，不保存座標</em></div></div>
-</section>
-<section class="screen r">
-  <div class="fig ph"><div class="phone"><img src="images/tt-item.jpg" alt="一個品項，三個步驟"></div></div>
-  <div class="rv"><h4>品項頁</h4><h3>一個品項，三個步驟</h3><p>手搖杯：倒掉飲料 → 撕膜、抽吸管 → 倒空沖洗；多材質拆件後各自標出去向。</p><div class="pain"><span>設計重點</span><em>答案只來自環保局規則表；官方說法不一致的，標示「不確定」並請洽 1999</em></div></div>
 </section>
 <section class="screen">
   <div class="fig ph"><div class="phone"><img src="images/tt-vi.jpg" alt="中文大字，母語小字"></div></div>
