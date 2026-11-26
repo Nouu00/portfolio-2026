@@ -16,6 +16,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
 img{display:block;max-width:100%}
+i,em{font-style:normal}
 a{color:inherit;text-decoration:none}
 :root{--pad:clamp(20px,3.2vw,48px);--ease:cubic-bezier(.16,1,.3,1)}
 header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:var(--pad);pointer-events:none;mix-blend-mode:difference;color:#fff}
@@ -48,7 +49,7 @@ body{background:#000;color:#e9ece6;font-family:"Roboto","Noto Sans TC",sans-seri
 .pixbg{position:fixed;inset:0;z-index:-1;background-image:linear-gradient(rgba(165,255,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(165,255,0,.05) 1px,transparent 1px);background-size:32px 32px}
 /* hero */
 .vhero{position:relative;height:100vh;min-height:560px;overflow:hidden;background:#000}
-.vhero .vid,.vhero .poster{position:absolute;top:50%;left:50%;width:max(100vw,177.78vh);height:max(56.25vw,100vh);transform:translate(-50%,-50%);border:0;pointer-events:none}
+.vhero .vid,.vhero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;pointer-events:none}
 .vhero .poster{object-fit:cover;width:100%;height:100%;left:0;top:0;transform:none}
 .vhero .vid{opacity:0;transition:opacity 1.2s}
 .vhero .vid.on{opacity:1}
@@ -117,6 +118,11 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
 .fonts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:28px;border-top:1px solid rgba(255,255,255,.18);padding-top:24px}
 .fonts div span{display:block;font-size:13px;opacity:.5;margin-bottom:8px}
 .fonts div p{font-size:clamp(26px,2.6vw,40px)}
+.browser{margin-top:48px;border:1px solid rgba(255,255,255,.16);background:#0b0b0b;overflow:hidden}
+.browser .bbar{display:flex;align-items:center;gap:7px;height:34px;padding:0 14px;border-bottom:1px solid rgba(255,255,255,.12);font-family:"Roboto Mono",monospace;font-size:12px;color:rgba(255,255,255,.55)}
+.browser .bbar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
+.browser .bbar span{margin-left:10px}
+.browser video{display:block;width:100%;height:auto}
 .video{margin-top:48px;position:relative;aspect-ratio:16/9;background:#050505;border:1px solid rgba(255,255,255,.12)}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .btn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;padding:14px 22px;background:#A5FF00;color:#000;font-size:16px;font-weight:500;transition:transform .5s var(--ease)}
@@ -161,7 +167,7 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
 <div class="pixbg" aria-hidden="true"></div>
 <section class="vhero" id="top">
   <img class="poster" src="images/aidentity-banner.jpg" alt="">
-  <iframe class="vid" src="https://www.youtube-nocookie.com/embed/WdY9WGrwbN0?autoplay=1&mute=1&loop=1&playlist=WdY9WGrwbN0&controls=0&rel=0&modestbranding=1&playsinline=1" title="(AI)dentity 主視覺動畫" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
+  <video class="vid on" src="images/aidentity-site.mp4" poster="images/aidentity-site.jpg" autoplay muted loop playsinline aria-label="(AI)dentity 官網動畫"></video>
   <div class="frame" aria-hidden="true"><span>identity 0.62</span></div>
   <div class="ttl">
     <div class="k mono g">OPEN HCI 2026 · 主視覺設計</div>
@@ -232,8 +238,8 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
 
 <section class="pad"><div class="wrapw">
   <h2 class="h2 rv">動態影像<small>Motion</small></h2>
-  <p class="body17 rv">把細胞增生與 glitch 錯位延伸成會變動的畫面，用在活動宣傳與開場。</p>
-  <div class="video rv"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/WdY9WGrwbN0?rel=0&modestbranding=1&playsinline=1" title="(AI)dentity 動態影像" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+  <p class="body17 rv">把細胞增生與 glitch 錯位延伸成會變動的畫面，用在活動宣傳與官網開場。</p>
+  <div class="browser rv"><div class="bbar"><i></i><i></i><i></i><span>2026.openhci.com</span></div><video src="images/aidentity-site.mp4" poster="images/aidentity-site.jpg" autoplay muted loop playsinline aria-label="官網開場與捲動動畫"></video></div>
 </div></section>
 
 <section class="pad"><div class="wrapw duo">
@@ -243,7 +249,8 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
     <a class="btn rv" href="https://www.2026.openhci.com/" target="_blank" rel="noopener">官方網站 ↗</a>
   </div>
   <figure class="obs"><div class="reveal-img"><img src="images/aidentity-social.jpg" alt="社群 Banner"></div></figure>
-</div></section>
+</div>
+<div class="wrapw"><div class="browser rv" style="margin-top:clamp(16px,2vw,28px)"><div class="bbar"><i></i><i></i><i></i><span>instagram.com/open.hci</span></div><video src="images/aidentity-ig.mp4" poster="images/aidentity-ig.jpg" autoplay muted loop playsinline aria-label="Instagram 版面"></video></div></div></section>
 
 <section class="pad" style="padding-left:0;padding-right:0">
   <div style="padding:0 var(--pad)" class="wrapw"><h2 class="h2 rv">識別證、指引與印刷物<small>Applications</small></h2>
@@ -311,11 +318,6 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
   });
 }
 
-
-{
-  var v=document.querySelector('.vhero .vid');
-  if(v){ v.addEventListener('load',function(){ setTimeout(function(){ v.classList.add('on'); },1600); }); }
-}
 
 </script>
 </body>

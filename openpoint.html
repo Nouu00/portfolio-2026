@@ -33,6 +33,7 @@ html{background:var(--bg);-webkit-font-smoothing:antialiased}
 body{color:var(--ink);font-family:"Inter V","Noto Sans TC",system-ui,sans-serif;font-weight:400;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
+i,em{font-style:normal}
 ::selection{background:var(--blue);color:#fff}
 
 /* ---------- 背景：朦朧流動 ---------- */
@@ -64,6 +65,7 @@ nav a.on{color:var(--blue)}
 
 
 
+i,em{font-style:normal}
 /* ---------- 作品內頁 ---------- */
 .bar{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--blue);transform-origin:0 50%;transform:scaleX(0);z-index:30}
 .wrap{padding:0 var(--pad)}
@@ -100,7 +102,7 @@ nav a.on{color:var(--blue)}
 .card p{margin-top:10px;font-size:15px;line-height:1.7;color:#55565f}
 .list{list-style:none;counter-reset:n}
 .list li{counter-increment:n;display:grid;grid-template-columns:3em 1fr;padding:18px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.75}
-.list li:before{content:counter(n,decimal-leading-zero);font-family:"Fraunces X",serif;font-style:italic;color:var(--blue)}
+.list li:before{content:counter(n,decimal-leading-zero);font-weight:400;color:var(--blue)}
 .sub{font-size:20px;font-weight:500;letter-spacing:-.02em;margin:56px 0 18px}
 .bars{margin-top:28px}
 .brow{display:grid;grid-template-columns:minmax(0,15em) 1fr 4.5em;align-items:center;gap:18px;padding:12px 0;font-size:16px}
@@ -118,7 +120,7 @@ nav a.on{color:var(--blue)}
 .finds p{font-size:16px;line-height:1.8;color:#4a4b55}
 .quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px);padding:16vh var(--pad) 0}
 .quote{font-size:clamp(22px,2.2vw,34px);line-height:1.5;letter-spacing:-.015em}
-.quote:before{content:"“";display:block;font-family:"Fraunces X",serif;font-size:2.4em;line-height:.6;color:var(--blue);margin-bottom:.15em}
+.quote:before{content:"“";display:block;font-size:2.4em;line-height:.6;color:var(--blue);margin-bottom:.15em}
 .quote span{display:block;margin-top:18px;font-size:14px;color:var(--mute);letter-spacing:.06em}
 .hmw{padding:22vh var(--pad) 8vh;text-align:center}
 .hmw small{display:block;font-size:15px;color:var(--blue);letter-spacing:.14em;margin-bottom:28px}
@@ -128,7 +130,7 @@ nav a.on{color:var(--blue)}
 .tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);padding:4vh var(--pad) 0}
 .step{padding:16vh var(--pad) 0}
 .step .sh{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,80px);align-items:end}
-.step .no{font-family:"Fraunces X",serif;font-style:italic;font-size:clamp(80px,12vw,220px);line-height:.8;color:var(--blue);letter-spacing:-.04em}
+.step .no{font-weight:400;font-size:clamp(80px,12vw,220px);line-height:.8;color:var(--blue);letter-spacing:-.04em}
 .step h3{font-size:clamp(28px,2.8vw,48px);font-weight:500;letter-spacing:-.035em;line-height:1.15}
 .step .sb{margin:28px 0 0 calc(33.33% + clamp(8px,1.3vw,26px));font-size:17px;line-height:1.95;max-width:44em}
 .screen{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,96px);align-items:center;padding:12vh var(--pad) 0;max-width:1180px;margin:0 auto}
@@ -180,7 +182,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .flow figure{margin:0}
 .flow figcaption{margin-top:16px;font-size:15px;line-height:1.6;color:var(--mute)}
 .flow figcaption b{display:block;color:var(--ink);font-weight:500;font-size:17px;margin-bottom:4px}
-.flow figcaption b i{font-style:italic;font-family:"Fraunces X",serif;color:var(--blue);margin-right:8px}
+.flow figcaption b i{font-style:normal;color:var(--blue);margin-right:8px}
 @media (max-width:860px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.screen .fig.ph,.screen.r .fig.ph{max-width:260px}}
 #gridc{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 @media (max-width:860px){
