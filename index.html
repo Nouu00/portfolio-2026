@@ -185,6 +185,8 @@ footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--
 .rrow.cur:hover img{transform:scale(1.04)}
 .rrow .im video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:0;transition:opacity 1s}
 .rrow .im video.on{opacity:1}
+.rrow .im iframe{position:absolute;top:50%;left:50%;border:0;pointer-events:none;opacity:0;transition:opacity 1.2s;transform:translate(-50%,-50%)}
+.rrow .im iframe.on{opacity:1}
 .reel .side{position:absolute;left:var(--pad);top:50%;transform:translateY(-50%);width:calc(100% - min(58vw,980px) - var(--pad)*3);z-index:3}
 .reel .kind{font-size:clamp(18px,1.6vw,26px);color:var(--mute);letter-spacing:-.02em;display:flex;gap:.35em;align-items:flex-start;margin-bottom:22px}
 .reel .kind .roll{color:var(--blue)}
@@ -254,7 +256,7 @@ footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--
   </section>
 
 <section class="block" id="uiux" style="padding-bottom:0"><div class="head reveal"><h2 class="ln split">Works</h2></div></section>
-<section class="reel"><div class="pin"><div class="col"><a class="rrow" href="openpoint.html"><div class="im"><img src="images/op2-cover.jpg" alt="OPENPOINT Redesign"></div></a><a class="rrow" href="tosstalk.html"><div class="im"><img src="images/tt-cover.jpg" alt="丟丟 TossTalk"></div></a><a class="rrow" href="tabelog.html"><div class="im"><img src="images/tb-cover.jpg" alt="Tabelog 再設計"></div></a><a class="rrow" href="aidentity.html" id="visual"><div class="im" data-vid="images/aidentity-site.mp4"><img src="images/aidentity-banner.jpg" alt="(AI)dentity"></div></a><a class="rrow" href="poster.html"><div class="im"><img src="images/po-full.jpg" alt="生生死死，生生慢"></div></a><div class="rrow soon"><div class="im"><img src="images/ph-viking.jpg" alt="Viking House"></div></div></div>
+<section class="reel"><div class="pin"><div class="col"><a class="rrow" href="openpoint.html"><div class="im" data-vid="images/mk-op.mp4"><img src="images/mk-op.jpg" alt="OPENPOINT Redesign"></div></a><a class="rrow" href="tosstalk.html"><div class="im" data-vid="images/mk-tt.mp4"><img src="images/mk-tt.jpg" alt="丟丟 TossTalk"></div></a><a class="rrow" href="tabelog.html"><div class="im" data-vid="images/mk-tb.mp4"><img src="images/mk-tb.jpg" alt="Tabelog 再設計"></div></a><a class="rrow" href="aidentity.html" id="visual"><div class="im" data-vid="yt:WdY9WGrwbN0"><img src="images/aidentity-banner.jpg" alt="(AI)dentity"></div></a><a class="rrow" href="poster.html"><div class="im"><img src="images/po-full.jpg" alt="生生死死，生生慢"></div></a><div class="rrow soon"><div class="im"><img src="images/ph-viking.jpg" alt="Viking House"></div></div></div>
 <div class="side"><div class="kind"><span>Designing</span><span class="roll"><span class="rl"><span>UI / UX</span><span>Visual Design</span></span></span></div><div class="ttl" id="bt">OPENPOINT Redesign</div><div class="idx"><i></i><i></i><i></i><i></i><i></i><i></i><b class="blob"></b></div></div></div></section>
   <section class="block" id="about">
     <div class="head reveal"><h2 class="ln split">About</h2></div>
@@ -411,9 +413,17 @@ footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--
       r.classList.toggle('cur', i===ci);
       var im=r.querySelector('.im'), vs=im.dataset.vid;
       if(vs){ var vd=im.querySelector('video');
+        var yt=vs.indexOf('yt:')===0;
+        if(yt){ var fr=im.querySelector('iframe');
+          if(!fr && i===ci){ var id=vs.slice(3); fr=document.createElement('iframe'); fr.title='動畫預覽'; fr.tabIndex=-1; fr.setAttribute('allow','autoplay; encrypted-media');
+            fr.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&controls=0&rel=0&modestbranding=1&playsinline=1';
+            fr.addEventListener('load',function(){ var f2=this; setTimeout(function(){ f2.classList.add('on'); },1400); }); im.appendChild(fr); }
+          if(fr){ var iw=im.offsetWidth, ih=im.offsetHeight, fw=Math.max(iw, ih*16/9); fr.style.width=fw+'px'; fr.style.height=(fw*9/16)+'px'; }
+        } else {
         if(!vd && i===ci){ vd=document.createElement('video'); vd.muted=true; vd.loop=true; vd.playsInline=true; vd.autoplay=true; vd.setAttribute('playsinline',''); vd.src=vs;
           vd.addEventListener('playing',function(){ this.classList.add('on'); }); im.appendChild(vd); vd.play().catch(function(){}); }
         if(vd){ if(i===ci){ if(vd.paused) vd.play().catch(function(){}); } else if(!vd.paused) vd.pause(); }
+        }
       }
     });
     if(ci!==shown){

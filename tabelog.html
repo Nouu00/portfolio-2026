@@ -83,6 +83,7 @@ i,em{font-style:normal}
 .cover{margin:0 auto;width:min(calc(100% - var(--pad)*2),1180px);height:min(68vh,46vw);overflow:hidden;position:relative;clip-path:inset(12% 8% 12% 8%);transition:clip-path 1.8s var(--ease)}
 .cover.in{clip-path:inset(0 0 0 0)}
 .cover img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;will-change:transform}
+.cover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2vw,32px);padding:14vh var(--pad) 4vh}
 .stat b{display:block;font-size:clamp(44px,5.4vw,96px);font-weight:300;letter-spacing:-.05em;line-height:1}
 .stat b small{font-size:.32em;color:var(--mute);margin-left:.2em;letter-spacing:0}
@@ -184,6 +185,58 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .flow figcaption b{display:block;color:var(--ink);font-weight:500;font-size:17px;margin-bottom:4px}
 .flow figcaption b i{font-style:normal;color:var(--blue);margin-right:8px}
 @media (max-width:860px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.screen .fig.ph,.screen.r .fig.ph{max-width:260px}}
+
+/* ---------- device mockups ---------- */
+.dev{position:relative;width:var(--w,300px);aspect-ratio:400/872;border-radius:15.5%/7.1%;padding:3%;background:linear-gradient(145deg,#2a2b31,#121317);box-shadow:0 2px 0 1px rgba(255,255,255,.08) inset,0 50px 80px -40px rgba(26,30,60,.45),0 18px 30px -20px rgba(26,30,60,.3)}
+.dev:before{content:"";position:absolute;left:-1.2%;top:20%;width:1.2%;height:7%;border-radius:2px 0 0 2px;background:#1b1c21}
+.dev .scr{position:relative;width:100%;height:100%;border-radius:13%/6%;overflow:hidden;background:#fff;isolation:isolate}
+.dev .scr > img{position:absolute;left:0;top:0;width:100%;display:block}
+.dev .scr > img.b{opacity:0}
+.dev.scroll .scr > img{animation:dscroll var(--t,12s) cubic-bezier(.65,0,.35,1) infinite}
+@keyframes dscroll{0%,14%{transform:none}46%,62%{transform:translateY(var(--d))}94%,100%{transform:none}}
+.dev.xf .scr > img.b{animation:dxf var(--t,7s) ease-in-out infinite}
+@keyframes dxf{0%,38%{opacity:0;transform:translateY(3%)}48%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+.dev.sheet .sh{position:absolute;left:-2.75%;width:105.5%;bottom:0;transform:translateY(100%);animation:dsheet var(--t,7s) cubic-bezier(.16,1,.3,1) infinite}
+.dev.sheet .scrim{position:absolute;inset:0;background:rgba(0,0,0,.35);opacity:0;animation:dscrim var(--t,7s) ease infinite}
+@keyframes dsheet{0%,30%{transform:translateY(100%)}44%,84%{transform:translateY(12%)}96%,100%{transform:translateY(100%)}}
+@keyframes dscrim{0%,30%{opacity:0}42%,84%{opacity:1}96%,100%{opacity:0}}
+.tap{position:absolute;width:13%;aspect-ratio:1;margin:-6.5% 0 0 -6.5%;border-radius:50%;background:rgba(33,80,232,.28);border:2px solid rgba(33,80,232,.7);opacity:0;animation:dtap var(--t,7s) ease-out infinite;z-index:5;pointer-events:none}
+@keyframes dtap{0%,26%{opacity:0;transform:scale(.4)}30%{opacity:1;transform:scale(1)}36%{opacity:0;transform:scale(1.6)}100%{opacity:0}}
+.dev.wipe .scr > img.b{opacity:1;clip-path:inset(0 0 0 100%);animation:dwipe var(--t,8s) cubic-bezier(.65,0,.35,1) infinite}
+.dev.wipe .line{position:absolute;top:0;bottom:0;width:2px;background:var(--blue);left:100%;animation:dline var(--t,8s) cubic-bezier(.65,0,.35,1) infinite;z-index:4}
+@keyframes dwipe{0%,18%{clip-path:inset(0 0 0 100%)}48%,82%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 0 100%)}}
+@keyframes dline{0%,18%{left:100%;opacity:1}48%{left:0;opacity:1}52%,82%{left:0;opacity:0}100%{left:100%;opacity:0}}
+.tags{position:absolute;left:0;right:0;bottom:-38px;display:flex;justify-content:space-between;font-size:13px;color:var(--mute)}
+.tags b{color:var(--blue);font-weight:500}
+.float{animation:dfloat 7s ease-in-out infinite}
+@keyframes dfloat{50%{transform:translateY(-14px)}}
+/* hero stage */
+.ophero{position:relative;margin:0 auto;width:min(calc(100% - var(--pad)*2),1180px);height:min(78vh,62vw);display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,48px);perspective:1800px}
+.ophero .dev{--w:clamp(150px,19vw,280px)}
+.ophero .d1{transform:rotateY(18deg) rotateZ(-3deg) translateY(4%)}
+.ophero .d2{--w:clamp(170px,22vw,320px);z-index:2}
+.ophero .d3{transform:rotateY(-18deg) rotateZ(3deg) translateY(4%)}
+.ophero .wrap3d{transition:transform 1.4s var(--ease);will-change:transform}
+.screen .fig.dv{clip-path:none;justify-self:end;max-width:none}
+.screen.r .fig.dv{justify-self:start}
+.screen .fig.dv .dev{--w:clamp(220px,23vw,320px)}
+.flow4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2.4vw,40px);padding:10vh var(--pad) 0;max-width:1240px;margin:0 auto;justify-items:center}
+.flow4 figure{margin:0;width:100%;max-width:250px}
+.flow4 .dev{--w:100%;transition:transform .8s var(--ease)}
+.flow4 figure.on .dev{transform:translateY(-14px)}
+.flow4 figcaption{margin-top:18px;font-size:15px;line-height:1.6;color:var(--mute);transition:color .5s}
+.flow4 figcaption b{display:block;color:var(--ink);font-weight:500;font-size:17px;margin-bottom:4px}
+.flow4 figcaption b i{color:var(--blue);margin-right:8px}
+.flow4 figure.on figcaption b{color:var(--blue)}
+.flow4 .bar4{grid-column:1/-1;width:100%;height:2px;background:rgba(33,80,232,.12);position:relative;margin-top:6px}
+.flow4 .bar4 i{position:absolute;left:0;top:0;bottom:0;background:var(--blue);width:0;transition:width .9s var(--ease)}
+@media (max-width:860px){
+  .ophero{height:auto;padding:4vh 0}
+  .ophero .d1,.ophero .d3{display:none}
+  .ophero .d2{--w:min(64vw,280px)}
+  .screen .fig.dv,.screen.r .fig.dv{justify-self:center}
+  .flow4{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:6vh}
+}
 #gridc{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 @media (max-width:860px){
   .meta{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px}
@@ -229,7 +282,7 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
   </dl>
 </section>
 
-<div class="cover"><img src="images/tb-hero.jpg" alt="Tabelog 再設計介面"></div>
+<div class="cover vcov"><video src="images/mk-tb.mp4" poster="images/mk-tb.jpg" autoplay muted loop playsinline aria-label="Tabelog 再設計介面動畫"></video></div>
 
 <section class="stats">
   <div class="stat"><b><span data-count="4000">0</span><small>萬人</small></b><span>2025 年訪日旅客，創歷史新高</span></div>
@@ -401,6 +454,9 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
         gl.drawArrays(gl.TRIANGLES,0,6); requestAnimationFrame(d); })(t0);
     }
   }
+  var f4=document.getElementById('flow4');
+  if(f4){ var figs=[].slice.call(f4.querySelectorAll('figure')), fb=f4.querySelector('.bar4 i'), fi=0;
+    setInterval(function(){ figs.forEach(function(f,i){ f.classList.toggle('on',i===fi); }); fb.style.width=((fi+1)/figs.length*100)+'%'; fi=(fi+1)%figs.length; },1600); }
   /* 網格 */
   var gc=document.getElementById('gridc'), gx=gc.getContext('2d'), lit={}, gT0=performance.now(), last=gT0, ex=-1e4, ey=-1e4, nsp=0;
   addEventListener('mousemove',function(e){ex=e.clientX;ey=e.clientY;});
