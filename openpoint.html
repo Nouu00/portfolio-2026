@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPENPOINT Redesign — 楊芷翎</title>
+<meta name="theme-color" content="#efeff1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+@font-face{font-family:"Inter V";src:url(images/intertight-var.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Fraunces X";src:url(images/fraunces-x.woff2) format("woff2");font-display:swap}
+
+:root{
+  --bg:#efeff1;
+  --ink:#1a1b22;
+  --mute:#8b8a97;
+  --line:rgba(33,80,232,.22);
+  --blue:#2150e8;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --pad:clamp(20px,3.2vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);-webkit-font-smoothing:antialiased}
+body{color:var(--ink);font-family:"Inter V","Noto Sans TC",system-ui,sans-serif;font-weight:400;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:var(--blue);color:#fff}
+
+/* ---------- 背景：朦朧流動 ---------- */
+.mist{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mist canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#glass{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;transition:opacity .3s}
+.goo{display:none}
+.noglass .goo{display:block}
+.noglass #glass{display:none}
+.mist.fallback{background:radial-gradient(40vw 50vw at 30% 30%,rgba(30,30,30,.45),transparent 70%),radial-gradient(30vw 30vw at 75% 60%,rgba(30,30,30,.3),transparent 70%)}
+@keyframes d2{to{transform:translate3d(-6vw,-14vh,0) scale(.9)}}
+@keyframes d3{to{transform:translate3d(-14vw,10vh,0) scale(1.2)}}
+.grain{position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  background:url(images/grain.png);animation:grain 1s steps(4) infinite}
+@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-4%)}75%{transform:translate(-1%,3%)}}
+
+main,header,footer{position:relative;z-index:2}
+
+/* ---------- 頁首 ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:var(--pad);pointer-events:none}
+header > *{pointer-events:auto}
+.mark{display:flex;align-items:center;gap:12px;font-size:14px;letter-spacing:.02em}
+.mark i{width:14px;height:14px;border-radius:50%;background:var(--blue);transition:transform .6s var(--ease)}
+.mark:hover i{transform:scale(1.6)}
+nav{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+nav a{font-size:clamp(18px,1.6vw,26px);color:var(--mute);letter-spacing:-.01em;transition:color .4s}
+nav a:hover{color:var(--ink)}
+nav a.on{color:var(--blue)}
+
+
+
+/* ---------- 作品內頁 ---------- */
+.bar{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--blue);transform-origin:0 50%;transform:scaleX(0);z-index:30}
+.wrap{padding:0 var(--pad)}
+.chero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:22vh var(--pad) 8vh}
+.kicker{color:var(--blue);font-size:15px;margin-bottom:22px}
+.ctitle{font-size:clamp(56px,11vw,200px);font-weight:500;letter-spacing:-.055em;line-height:.88}
+.ctitle .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.ctitle .w > span{display:inline-block;transform:translateY(105%);transition:transform 1.4s var(--ease)}
+.ready .ctitle .w > span{transform:none}
+.tag{max-width:30em;margin-top:34px;font-size:clamp(19px,1.8vw,28px);line-height:1.5;color:var(--ink);letter-spacing:-.01em}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 clamp(16px,2vw,32px);margin-top:9vh}
+.meta div{border-top:1px solid var(--line);padding-top:14px}
+.meta dt{font-size:14px;color:var(--mute);margin-bottom:8px}
+.meta dd{font-size:16px;line-height:1.6}
+.cover{margin:0 var(--pad);height:min(86vh,62vw);overflow:hidden;position:relative;clip-path:inset(12% 8% 12% 8%);transition:clip-path 1.8s var(--ease)}
+.cover.in{clip-path:inset(0 0 0 0)}
+.cover img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;will-change:transform}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2vw,32px);padding:14vh var(--pad) 4vh}
+.stat b{display:block;font-size:clamp(44px,5.4vw,96px);font-weight:300;letter-spacing:-.05em;line-height:1}
+.stat b small{font-size:.32em;color:var(--mute);margin-left:.2em;letter-spacing:0}
+.stat span{display:block;margin-top:12px;font-size:15px;color:var(--mute)}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,80px);padding:16vh var(--pad) 0}
+.sec > h2{position:sticky;top:18vh;align-self:start;font-size:clamp(28px,2.6vw,44px);font-weight:500;letter-spacing:-.035em;line-height:1.1}
+.sec > h2 i{display:block;font-style:normal;font-size:15px;color:var(--blue);letter-spacing:0;margin-bottom:14px}
+.body{font-size:17px;line-height:1.95;max-width:44em}
+.body p + p{margin-top:1.1em}
+.hl{color:var(--blue)}
+.lead{font-size:clamp(22px,2vw,32px);line-height:1.6;letter-spacing:-.01em}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin-top:48px}
+.card{padding:26px 26px 30px;background:rgba(255,255,255,.42);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);transition:transform .7s var(--ease),background .5s}
+.card:hover{transform:translateY(-4px);background:rgba(255,255,255,.62)}
+.card h4{font-size:14px;color:var(--blue);font-weight:500;margin-bottom:14px}
+.card h3{font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1.35}
+.card p{margin-top:10px;font-size:15px;line-height:1.7;color:#55565f}
+.list{list-style:none;counter-reset:n}
+.list li{counter-increment:n;display:grid;grid-template-columns:3em 1fr;padding:18px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.75}
+.list li:before{content:counter(n,decimal-leading-zero);font-family:"Fraunces X",serif;font-style:italic;color:var(--blue)}
+.sub{font-size:20px;font-weight:500;letter-spacing:-.02em;margin:56px 0 18px}
+.bars{margin-top:28px}
+.brow{display:grid;grid-template-columns:minmax(0,15em) 1fr 4.5em;align-items:center;gap:18px;padding:12px 0;font-size:16px}
+.brow .tr{height:10px;background:rgba(33,80,232,.08);position:relative;overflow:hidden}
+.brow .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--blue);width:0;transition:width 1.6s var(--ease)}
+.in .brow .tr i{width:var(--w)}
+.brow b{font-weight:400;text-align:right;font-variant-numeric:tabular-nums}
+.big3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin-top:36px}
+.big3 .card b{display:block;font-size:52px;font-weight:300;letter-spacing:-.05em;line-height:1;margin-bottom:14px}
+.big3 .card b small{font-size:20px;color:var(--mute)}
+.note{margin-top:18px;font-size:14px;color:var(--mute)}
+.finds{margin-top:30px}
+.finds div{padding:20px 0;border-top:1px solid var(--line)}
+.finds h3{font-size:19px;font-weight:500;margin-bottom:6px}
+.finds p{font-size:16px;line-height:1.8;color:#4a4b55}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px);padding:16vh var(--pad) 0}
+.quote{font-size:clamp(22px,2.2vw,34px);line-height:1.5;letter-spacing:-.015em}
+.quote:before{content:"“";display:block;font-family:"Fraunces X",serif;font-size:2.4em;line-height:.6;color:var(--blue);margin-bottom:.15em}
+.quote span{display:block;margin-top:18px;font-size:14px;color:var(--mute);letter-spacing:.06em}
+.hmw{padding:22vh var(--pad) 8vh;text-align:center}
+.hmw small{display:block;font-size:15px;color:var(--blue);letter-spacing:.14em;margin-bottom:28px}
+.hmw p{max-width:22em;margin:0 auto;font-size:clamp(28px,3.6vw,60px);line-height:1.3;letter-spacing:-.035em;font-weight:500}
+.hmw p .ws{display:inline-block;opacity:.12;transition:opacity .6s}
+.hmw p .ws.on{opacity:1}
+.tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);padding:4vh var(--pad) 0}
+.step{padding:16vh var(--pad) 0}
+.step .sh{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,80px);align-items:end}
+.step .no{font-family:"Fraunces X",serif;font-style:italic;font-size:clamp(80px,12vw,220px);line-height:.8;color:var(--blue);letter-spacing:-.04em}
+.step h3{font-size:clamp(28px,2.8vw,48px);font-weight:500;letter-spacing:-.035em;line-height:1.15}
+.step .sb{margin:28px 0 0 calc(33.33% + clamp(8px,1.3vw,26px));font-size:17px;line-height:1.95;max-width:44em}
+.screen{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,5vw,96px);align-items:center;padding:12vh var(--pad) 0}
+.screen.r{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.screen.r .fig{order:2}
+.fig{overflow:hidden;clip-path:inset(0 0 100% 0);transition:clip-path 1.6s var(--ease)}
+.fig.in{clip-path:inset(0 0 0 0)}
+.fig img{width:100%;transform:scale(1.12);filter:blur(16px);transition:transform 2s var(--ease),filter 1.6s var(--ease)}
+.fig.in img{transform:none;filter:none}
+.screen h4{font-size:14px;color:var(--blue);font-weight:500;margin-bottom:12px}
+.screen h3{font-size:clamp(24px,2.2vw,36px);font-weight:500;letter-spacing:-.03em;line-height:1.25}
+.screen p{margin-top:14px;font-size:17px;line-height:1.9;color:#3d3e48}
+.pain{margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+.pain span{display:block;font-size:14px;color:var(--mute);margin-bottom:6px}
+.pain em{font-style:normal;font-size:16px;line-height:1.7}
+.wide{padding:12vh var(--pad) 0}
+.wide .fig{max-width:1240px;margin:0 auto}
+.tasks{margin-top:36px}
+.task{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.task h3{font-size:18px;font-weight:500}
+.task p{margin-top:6px;font-size:16px;line-height:1.75;color:#4a4b55}
+.badge{align-self:start;font-size:14px;padding:6px 12px;border:1px solid var(--blue);color:var(--blue);white-space:nowrap}
+.badge.ok{background:var(--blue);color:#fff}
+.res{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin-top:40px}
+.res .card b{display:block;font-size:clamp(36px,3.6vw,60px);font-weight:300;letter-spacing:-.05em;line-height:1.05;margin-bottom:12px}
+.total{margin-top:28px;font-size:clamp(22px,2vw,32px);letter-spacing:-.02em}
+.total span{color:var(--blue)}
+.refl{margin-top:8px}
+.refl div{padding:28px 0;border-top:1px solid var(--line)}
+.refl h3{font-size:clamp(22px,2vw,30px);font-weight:500;letter-spacing:-.025em}
+.refl p{margin-top:10px;font-size:17px;line-height:1.9;color:#3d3e48}
+.next{display:block;margin:22vh var(--pad) 0;padding:6vh 0 8vh;border-top:1px solid var(--line)}
+.next small{display:block;font-size:15px;color:var(--blue);margin-bottom:18px}
+.next b{display:block;font-size:clamp(48px,9vw,170px);font-weight:500;letter-spacing:-.055em;line-height:.9;transition:transform 1s var(--ease)}
+.next:hover b{transform:translateX(2.5vw)}
+.next b i{font-style:normal;display:inline-block;transition:transform 1s var(--ease);color:var(--blue)}
+.next:hover b i{transform:translateX(1.2vw)}
+.rv{opacity:0;transform:translateY(32px);filter:blur(8px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.rv.in{opacity:1;transform:none;filter:none}
+footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--pad);font-size:14px;color:var(--mute)}
+#gridc{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+@media (max-width:860px){
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:6vh}
+  .sec,.step .sh,.screen,.screen.r,.quotes{grid-template-columns:minmax(0,1fr)}
+  .sec > h2{position:static}
+  .screen.r .fig{order:0}
+  .step .sb{margin-left:0}
+  .cards,.big3,.tri,.res{grid-template-columns:minmax(0,1fr)}
+  .brow{grid-template-columns:minmax(0,1fr) 3.5em;gap:8px 14px}
+  .brow .tr{grid-column:1/-1;grid-row:2}
+  .cover{height:62vh}
+}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition-duration:.01s!important}}
+
+</style>
+</head>
+<body>
+<div class="bar" aria-hidden="true"></div>
+<div class="mist" aria-hidden="true"><canvas id="fog"></canvas></div>
+<canvas id="gridc" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<header>
+  <a class="mark" href="index.html" aria-label="首頁"><i></i></a>
+  <nav>
+    <a href="index.html#uiux">UI / UX</a>
+    <a href="index.html#visual">Visual Design</a>
+    <a href="index.html#about">About</a>
+  </nav>
+</header>
+<main>
+
+<section class="chero" id="top">
+  <div class="kicker">UI / UX · 課程專案</div>
+  <h1 class="ctitle"><span class="w"><span>OPENPOINT</span></span> <span class="w"><span>Redesign</span></span></h1>
+  <p class="tag rv">讓 OPENPOINT 的價值被真正用到——從 854 則負評出發，重整點數、票券與支付的體驗。</p>
+  <dl class="meta rv">
+    <div><dt>項目性質</dt><dd>課程專案｜進階使用者經驗設計</dd></div>
+    <div><dt>執行時間</dt><dd>2026 春季（4 個月）</dd></div>
+    <div><dt>團隊</dt><dd>4 人（盧語宸、楊芷翎、陳柏巧、蘇毓心）</dd></div>
+    <div><dt>我的角色</dt><dd>桌面研究、使用者研究、設計發想、介面設計</dd></div>
+  </dl>
+</section>
+
+<div class="cover"><img src="images/openpoint-hero.jpg" alt="OPENPOINT 改版介面"></div>
+
+<section class="stats">
+  <div class="stat"><b><span data-count="854">0</span><small>則</small></b><span>負評分析</span></div>
+  <div class="stat"><b><span data-count="102">0</span><small>份</small></b><span>線上問卷</span></div>
+  <div class="stat"><b><span data-count="6">0</span><small>位</small></b><span>深度訪談</span></div>
+  <div class="stat"><b><span data-count="4">0</span><small>位</small></b><span>可用性測試</span></div>
+  <div class="stat"><b><span data-count="4">0</span><small>個</small></b><span>改版核心頁</span></div>
+</section>
+
+<section class="sec">
+  <h2 class="rv"><i>Overview</i>專案概述</h2>
+  <div>
+    <p class="lead rv">OPENPOINT 從紅利點數，一路長成串起<span class="hl">點數、會員、支付與 7-ELEVEN、康是美、博客來等子品牌</span>的平台。功能越加越多，產品定位卻越來越模糊——近一年累積 <span class="hl">854 則 1–3 星負評</span>。</p>
+    <p class="body rv" style="margin-top:28px">我們以「讓 OPENPOINT 的價值被真正用到」為目標，在保留品牌曝光的前提下重整資訊架構，並重新設計首頁、品牌館、付款碼與票券四個核心頁面。</p>
+    <div class="cards">
+      <div class="card rv"><h4>首頁</h4><h3>條碼集中、常用功能放大</h3><p>打開就能出示條碼、折抵點數</p></div>
+      <div class="card rv"><h4>品牌館</h4><h3>品牌內容獨立成新 Tab</h3><p>功能與行銷分開，兩邊都被看見</p></div>
+      <div class="card rv"><h4>付款碼</h4><h3>不用點開就看到餘額</h3><p>結帳時直接切換付款、兌換票券</p></div>
+      <div class="card rv"><h4>票券</h4><h3>入口前移＋個人化推薦</h3><p>更快找到、用到想要的券</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2 class="rv"><i>Details</i>專案細節</h2>
+  <div class="body">
+    <h3 class="sub rv" style="margin-top:0">專案目的</h3>
+    <p class="rv">降低資訊密度與操作複雜度，整合點數與支付流程，讓使用者快速、順暢地完成目標任務。</p>
+    <h3 class="sub rv">專案假設</h3>
+    <ol class="list rv">
+      <li>把「任務操作」和「行銷內容」分開，使用者能更快找到常用功能，廣告也不再打斷結帳</li>
+      <li>清楚呈現點數的累積、折抵與到期，使用者會更願意、也更常用掉點數</li>
+      <li>把支付、票券整合進同一個結帳流程，能減少切換與重複操作</li>
+    </ol>
+    <h3 class="sub rv">研究 &amp; 驗證方法</h3>
+    <ol class="list rv">
+      <li>負評分析（854 則）</li>
+      <li>線上問卷（102 份）</li>
+      <li>7-ELEVEN 實地觀察</li>
+      <li>高頻用戶深度訪談＋卡片分類（6 位）</li>
+      <li>可用性測試＋放聲思考（4 位）</li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec">
+  <h2 class="rv"><i>Findings</i>研究發現</h2>
+  <div class="body">
+    <p class="lead rv">問卷中，前三大痛點是<span class="hl">找不到功能、速度慢、廣告干擾</span>。</p>
+    <div class="bars">
+      <div class="brow"><span>找不到想用的功能</span><span class="tr"><i style="--w:48.5%"></i></span><b>48.5%</b></div>
+      <div class="brow"><span>速度慢、容易卡住或當掉</span><span class="tr"><i style="--w:40.2%"></i></span><b>40.2%</b></div>
+      <div class="brow"><span>廣告太多，影響操作</span><span class="tr"><i style="--w:39.2%"></i></span><b>39.2%</b></div>
+      <div class="brow"><span>結帳或付款不順暢</span><span class="tr"><i style="--w:20.6%"></i></span><b>20.6%</b></div>
+      <div class="brow"><span>不同服務整合不佳</span><span class="tr"><i style="--w:19.6%"></i></span><b>19.6%</b></div>
+    </div>
+    <p class="rv" style="margin-top:36px">另外，<span class="hl">約 6 成使用者會累積點數，實際用掉點數的卻只有約 4 成</span>——點數的使用過程本身就有問題。</p>
+    <div class="big3">
+      <div class="card"><b><span data-count="3.1" data-dec="1">0</span><small> / 5</small></b><h3>整體滿意度</h3><p>操作難易度也只有 3.1 / 5，多數人落在「普通」</p></div>
+      <div class="card"><b><span data-count="59">0</span><small>%</small></b><h3>把它當成「7-ELEVEN 會員 App」</h3><p>點數、支付、子品牌的平台定位，沒有被使用者理解</p></div>
+      <div class="card"><b><span data-count="56">0</span><small>%</small></b><h3>沒注意過其他品牌的優惠</h3><p>也有 54% 看到品牌優惠會直接忽略或幾乎不點，品牌曝光沒有發揮效果</p></div>
+    </div>
+    <p class="note rv">＊問卷多在學生與年輕族群社群發放，結果可能偏向年輕使用者。</p>
+    <p class="rv" style="margin-top:56px">接著深訪 6 位高頻用戶（用 3 年以上、每週 3–5 次、使用情境 4 種以上），問題集中在三個環節：</p>
+    <div class="finds">
+      <div class="rv"><h3>導覽混亂、廣告打斷操作</h3><p>名詞定義重複、常用功能區域狹小，首頁的搜尋只能搜商品、搜不到功能。</p></div>
+      <div class="rv"><h3>點數機制不透明</h3><p>不清楚消費怎麼換成點數、折抵條碼藏得深，也沒有到期提醒。</p></div>
+      <div class="rv"><h3>支付與禮券缺乏整合</h3><p>看不到各支付方式餘額，切換要退出重來；禮券種類多，不知道從哪裡開啟使用。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="quotes">
+  <p class="quote rv">想用 APP 結帳時，要先關掉廣告才能進行操作，後面有人在排隊時真的很有壓力。<span>USER 01</span></p>
+  <p class="quote rv">點數常常放著放著就過期了，而且快過期前系統也沒有提醒。<span>USER 02</span></p>
+</section>
+
+<section class="hmw">
+  <small>HOW MIGHT WE</small>
+  <p><span class="ws">我</span><span class="ws">們</span><span class="ws">如</span><span class="ws">何</span><span class="ws">降</span><span class="ws">低</span><span class="ws">資</span><span class="ws">訊</span><span class="ws">密</span><span class="ws">度</span><span class="ws">與</span><span class="ws">操</span><span class="ws">作</span><span class="ws">複</span><span class="ws">雜</span><span class="ws">度</span><span class="ws">，</span><span class="ws">並</span><span class="ws">整</span><span class="ws">合</span><span class="ws">點</span><span class="ws">數</span><span class="ws">機</span><span class="ws">制</span><span class="ws">與</span><span class="ws">支</span><span class="ws">付</span><span class="ws">流</span><span class="ws">程</span><span class="ws">，</span><span class="ws">讓</span><span class="ws">使</span><span class="ws">用</span><span class="ws">者</span><span class="ws">能</span><span class="ws">快</span><span class="ws">速</span><span class="ws">且</span><span class="ws">順</span><span class="ws">暢</span><span class="ws">地</span><span class="ws">完</span><span class="ws">成</span><span class="ws">目</span><span class="ws">標</span><span class="ws">任</span><span class="ws">務</span><span class="ws">？</span></p>
+</section>
+<div class="tri">
+  <div class="card rv"><h4>情感</h4><h3>不被打擾、更安心</h3><p>減少結帳與兌換時的打斷，降低排隊時的壓力</p></div>
+  <div class="card rv"><h4>行為</h4><h3>更容易完成操作</h3><p>整合支付、購物、寄取件等常用功能，減少切換</p></div>
+  <div class="card rv"><h4>反思</h4><h3>重新理解 OPENPOINT</h3><p>清楚呈現點數的累積、折抵與兌換關係</p></div>
+</div>
+
+<section class="step">
+  <div class="sh rv"><span class="no">01</span><h3>負評分析＆問卷、實地觀察</h3></div>
+  <p class="sb rv">從 854 則負評歸納問題面向，再用 102 份問卷了解使用頻率、常用功能與痛點，並到 7-ELEVEN 觀察使用者出示條碼、使用優惠券與支付的時機。</p>
+</section>
+<section class="step">
+  <div class="sh rv"><span class="no">02</span><h3>深度訪談＆卡片分類</h3></div>
+  <p class="sb rv">深訪 6 位高頻用戶，請他們畫出理想首頁並做卡片分類。依結果把架構重整為五大分類：<span class="hl">首頁／品牌館／付款碼／點數兌換／會員中心</span>，使用率低的「服務」頁併入首頁常用功能。</p>
+</section>
+<section class="step">
+  <div class="sh rv"><span class="no">03</span><h3>介面設計</h3></div>
+</section>
+<section class="screen">
+  <div class="fig"><img src="images/op-home.jpg" alt="資訊層級重構"></div>
+  <div class="rv"><h4>首頁</h4><h3>資訊層級重構</h3><p>Banner 置頂，保留曝光又不打斷操作；點數、集點卡、票券與條碼集中在會員區。</p><div class="pain"><span>解決的痛點</span><em>首頁資訊混亂、廣告干擾操作、折抵條碼藏太深</em></div></div>
+</section>
+<section class="screen r">
+  <div class="fig"><img src="images/op-home-2.jpg" alt="常用功能與推薦"></div>
+  <div class="rv"><h4>首頁</h4><h3>常用功能與推薦</h3><p>常用功能區加大並整合原本的服務頁；用個人化推薦取代無差別廣告。</p><div class="pain"><span>解決的痛點</span><em>常用功能太小，推薦只有熱銷商品</em></div></div>
+</section>
+<section class="screen">
+  <div class="fig"><img src="images/op-brand.jpg" alt="獨立專區"></div>
+  <div class="rv"><h4>品牌館</h4><h3>獨立專區</h3><p>品牌商品、活動與內容集中到新的 Tab，和功能型內容分開。</p><div class="pain"><span>解決的痛點</span><em>品牌資訊零碎，混在首頁干擾操作</em></div></div>
+</section>
+<section class="screen r">
+  <div class="fig"><img src="images/op-payment.jpg" alt="重構支付流程"></div>
+  <div class="rv"><h4>付款碼</h4><h3>重構支付流程</h3><p>不用點開就能看到各支付方式的餘額，在結帳頁直接切換付款方式。</p><div class="pain"><span>解決的痛點</span><em>看不到餘額，切換要退出重來</em></div></div>
+</section>
+<section class="screen">
+  <div class="fig"><img src="images/op-ticket.jpg" alt="兌換體驗重整"></div>
+  <div class="rv"><h4>票券</h4><h3>兌換體驗重整</h3><p>「我的票券」入口前移到首頁，依使用行為與收藏做個人化推薦。</p><div class="pain"><span>解決的痛點</span><em>入口太深、推薦不個人化</em></div></div>
+</section>
+
+<section class="step">
+  <div class="sh rv"><span class="no">04</span><h3>可用性測試＆迭代</h3></div>
+  <div class="sb">
+    <p class="rv">招募 4 位高頻用戶（20–31 歲），以放聲思考完成四個核心任務，最後填寫滿意度量表。</p>
+    <div class="tasks">
+      <div class="task rv"><div><h3>任務 1｜現金結帳＋會員條碼</h3><p>條碼集中在醒目的會員專區，能快速出示並折抵點數</p></div><span class="badge ok">✓ 完成</span></div>
+      <div class="task rv"><div><h3>任務 2｜兌換券兌換商品</h3><p>票券入口放大並集中在首頁，能快速找到並兌換</p></div><span class="badge ok">✓ 完成</span></div>
+      <div class="task rv"><div><h3>任務 3｜付款碼結帳＋兌換</h3><p>付款更流暢，但切換付款方式的區塊不容易被發現</p></div><span class="badge">△ 需優化</span></div>
+      <div class="task rv"><div><h3>任務 4｜瀏覽品牌館</h3><p>部分使用者不理解品牌館用途，用品牌分類反而更難找商品</p></div><span class="badge">△ 定位不清</span></div>
+    </div>
+  </div>
+</section>
+<section class="screen">
+  <div class="fig"><img src="images/op-payment-iter.jpg" alt="付款碼迭代"></div>
+  <div class="rv"><h4>迭代</h4><h3>付款碼</h3><p>切換區塊的標題和內文層級太接近，不夠明顯。</p><div class="pain"><span>調整</span><em>強化資訊層級與視覺區隔；兌換券整合進付款碼頁，直接完成兌換</em></div></div>
+</section>
+<section class="screen r">
+  <div class="fig"><img src="images/op-brand-iter.jpg" alt="品牌館迭代"></div>
+  <div class="rv"><h4>迭代</h4><h3>品牌館</h3><p>使用者更傾向用「商品需求」來瀏覽，而不是先認識品牌。</p><div class="pain"><span>調整</span><em>新增以商品種類為主的分類，幫助瀏覽與探索</em></div></div>
+</section>
+<section class="wide">
+  <div class="fig"><img src="images/op-other-flows.jpg" alt="其他核心流程"></div>
+  <p class="rv" style="text-align:center;margin-top:20px;font-size:16px;color:var(--mute)">其他核心流程也都能更流暢地完成</p>
+</section>
+
+<section class="sec">
+  <h2 class="rv"><i>Result</i>成果</h2>
+  <div class="body">
+    <p class="lead rv">四個月內，從 854 則負評一路走到改版原型，並找 4 位高頻使用者實際操作驗證。測試中順利的地方保留，卡住的地方再改一輪。</p>
+    <div class="res">
+      <div class="card"><b>5 <small style="font-size:.4em;color:var(--mute)">大分類</small></b><p>資訊架構重整</p></div>
+      <div class="card"><b>4 <small style="font-size:.4em;color:var(--mute)">頁</small></b><p>改版核心頁面</p></div>
+      <div class="card"><b>2 / 4</b><p>核心任務順利完成</p></div>
+      <div class="card"><b>2 <small style="font-size:.4em;color:var(--mute)">項</small></b><p>發現問題並迭代</p></div>
+    </div>
+    <p class="total rv"><span>→</span> 一版經過驗證的改版提案</p>
+  </div>
+</section>
+
+<section class="sec">
+  <h2 class="rv"><i>Reflection</i>心得與反思</h2>
+  <div class="refl">
+    <div class="rv"><h3>產品還是要賺錢的。</h3><p>做這個專案才發現，設計不能只聽使用者想要什麼，也要顧到公司想達成的目標，兩邊都要想辦法兼顧。</p></div>
+    <div class="rv"><h3>要多問一句「為什麼」。</h3><p>使用者的抱怨大家都看得到，但真正重要的是挖出背後的原因。我覺得把問題定義清楚，是我最需要再練習的地方。</p></div>
+    <div class="rv"><h3>AI 很快，但不懂情況。</h3><p>我有試著用 Claude Code 做原型，它整理洞察整理得很快，可是沒想到品牌曝光這種商業上的事。AI 可以幫很多忙，但最後還是要靠人來判斷。</p></div>
+  </div>
+</section>
+
+<a class="next" href="tosstalk.html"><small>Next project</small><b>丟丟 TossTalk <i>→</i></b></a>
+
+</main>
+<footer><span>© 2026 Yang Zhi Ling</span><a href="#top" onclick="scrollTo({top:0,behavior:'smooth'});return false">Top ↑</a></footer>
+<script>
+
+{
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(function(){ document.body.classList.add('ready'); });
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; var t=e.target; t.classList.add('in'); t.querySelectorAll('.fig').forEach(function(f){f.classList.add('in');});
+      t.querySelectorAll('[data-count]').forEach(count); io.unobserve(t); }); },{threshold:.15});
+  document.querySelectorAll('.rv,.screen,.wide,.cover,.stats,.bars,.big3,.res').forEach(function(el){ io.observe(el); });
+  function count(el){ var v=parseFloat(el.dataset.count), d=+(el.dataset.dec||0), t0=performance.now();
+    (function f(now){ var k=Math.min((now-t0)/1400,1), e=1-Math.pow(1-k,3); el.textContent=(v*e).toFixed(d); if(k<1) requestAnimationFrame(f); })(t0); }
+  var hm=document.querySelector('.hmw p'); if(hm){ var ws=[].slice.call(hm.querySelectorAll('.ws')); }
+  var bar=document.querySelector('.bar'), cov=document.querySelector('.cover img');
+  addEventListener('scroll',function(){
+    var h=document.documentElement.scrollHeight-innerHeight; bar.style.transform='scaleX('+(scrollY/h)+')';
+    if(cov){ var r=cov.parentNode.getBoundingClientRect(); cov.style.transform='translate3d(0,'+((r.top/innerHeight)*-8)+'%,0)'; }
+    if(ws){ var r2=hm.getBoundingClientRect(), k=1-(r2.top+r2.height*.3)/(innerHeight*.75); var n=Math.round(k*ws.length*1.1); ws.forEach(function(w,i){ w.classList.toggle('on', i<n); }); }
+  },{passive:true});
+
+  var FOG = [
+    'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+    'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
+    ' return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}',
+    'float fbm(vec2 p){float v=0.,a=.5;mat2 R=mat2(.8,.6,-.6,.8);for(int i=0;i<4;i++){v+=a*n(p);p=R*p*2.;a*=.5;}return v;}',
+    'vec3 fog(vec2 uv,float asp,float t,vec2 m,float sc,vec2 px){vec2 p=uv;p.x*=asp;p*=.9;p.y+=sc*.3;',
+    ' float T=t*.045;',
+    ' vec2 q=vec2(fbm(p+vec2(0.,T)),fbm(p+vec2(5.2,1.3)-T*.8));',
+    ' vec2 w=vec2(fbm(p+3.*q+vec2(1.7,9.2)+T*1.2+m*.4),fbm(p+3.*q+vec2(8.3,2.8)-T));',
+    ' float f=fbm(p+2.4*w);',
+    ' float d=smoothstep(.26,.78,f);',
+    ' vec3 bg=vec3(.937,.937,.945);vec3 ink=vec3(.36,.35,.42);',
+    ' float st=px.x<0.?d*.75:step(h(floor(px)),d*.75);',
+    ' vec3 c=mix(bg,ink,d*.26+st*.16);',
+    ' vec2 g=px/4.+vec2(T*14.,-T*9.);vec2 cell=floor(g);',
+    ' float sp=step(.9988-d*(1.-d)*.008,h(cell+3.7))*step(length(fract(g)-.5),.32+.18*h(cell));',
+    ' return mix(c,vec3(.13,.31,.91),px.x<0.?0.:sp*.9);}'
+  ].join('\n');
+  var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  var FS='precision mediump float;uniform vec2 r;uniform float t;uniform vec2 m;uniform float sc;\n'+FOG+'\nvoid main(){vec2 uv=gl_FragCoord.xy/r;gl_FragColor=vec4(fog(uv,r.x/r.y,t,m,sc,gl_FragCoord.xy),1.);}';
+  var cv=document.getElementById('fog'), gl=cv.getContext('webgl',{antialias:false});
+  if(gl){
+    var sh=function(k,s){var o=gl.createShader(k);gl.shaderSource(o,s);gl.compileShader(o);return o;};
+    var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
+    if(gl.getProgramParameter(pr,gl.LINK_STATUS)){
+      gl.useProgram(pr); var b=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,b);
+      gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+      var l=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,2,gl.FLOAT,false,0,0);
+      var U=function(k){return gl.getUniformLocation(pr,k);};
+      var size=function(){cv.width=Math.round(innerWidth*.5);cv.height=Math.round(innerHeight*.5);gl.viewport(0,0,cv.width,cv.height);};
+      size(); addEventListener('resize',size);
+      var t0=performance.now(), fsc=0, mx=0,my=0,tmx=0,tmy=0;
+      addEventListener('mousemove',function(e){tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;});
+      (function d(now){ fsc+=(scrollY/innerHeight-fsc)*.05; mx+=(tmx-mx)*.05; my+=(tmy-my)*.05;
+        gl.uniform2f(U('r'),cv.width,cv.height); gl.uniform1f(U('t'),reduce?0:(now-t0)/1000); gl.uniform2f(U('m'),mx,my); gl.uniform1f(U('sc'),fsc);
+        gl.drawArrays(gl.TRIANGLES,0,6); requestAnimationFrame(d); })(t0);
+    }
+  }
+  /* 網格 */
+  var gc=document.getElementById('gridc'), gx=gc.getContext('2d'), lit={}, gT0=performance.now(), last=gT0, ex=-1e4, ey=-1e4, nsp=0;
+  addEventListener('mousemove',function(e){ex=e.clientX;ey=e.clientY;});
+  (function g(now){
+    var dpr=Math.min(devicePixelRatio||1,2), W=innerWidth, Hh=innerHeight;
+    if(gc.width!==Math.round(W*dpr)||gc.height!==Math.round(Hh*dpr)){gc.width=Math.round(W*dpr);gc.height=Math.round(Hh*dpr);}
+    gx.setTransform(dpr,0,0,dpr,0,0); gx.clearRect(0,0,W,Hh);
+    var dt=Math.min((now-last)/1000,.1); last=now; var el=(now-gT0)/1000;
+    var st=W<=760?40:Math.max(22,W*.62/35), ox=Math.round(W/2)%st, oy=(-scrollY*.35)%st;
+    var ci=Math.floor((ex-ox)/st), cj=Math.floor((ey-oy)/st); if(ex>-1e3) lit[ci+','+cj]=1;
+    if(now>nsp){ nsp=now+600+Math.random()*900; var k2=Math.floor((Math.random()*W-ox)/st)+','+Math.floor((Math.random()*Hh-oy)/st); lit[k2]=Math.max(lit[k2]||0,.8); }
+    var dec=Math.exp(-dt/.7);
+    for(var k in lit){ var v=lit[k]*dec; if(v<.02){delete lit[k];continue;} lit[k]=v; var ij=k.split(','), X=ox+(+ij[0])*st, Y=oy+(+ij[1])*st;
+      gx.fillStyle='rgba(33,80,232,'+(v*.028)+')'; gx.fillRect(X,Y,st,st); }
+    gx.lineWidth=1;
+    for(var x=ox-st;x<=W;x+=st){ var a=Math.min(Math.max((el-.2-Math.abs(x-W/2)/W)/.8,0),1); if(!a) continue; var br=.5+.5*Math.sin(el*.9-(x/W)*4.2);
+      gx.strokeStyle='rgba(33,80,232,'+(.065*a*(.35+.65*br))+')'; gx.beginPath(); gx.moveTo(Math.round(x)+.5,0); gx.lineTo(Math.round(x)+.5,Hh); gx.stroke(); }
+    for(var y=oy-st;y<=Hh;y+=st){ var b2=Math.min(Math.max((el-.2-Math.abs(y-Hh/2)/Hh)/.8,0),1); if(!b2) continue; var br2=.5+.5*Math.sin(el*.9-(y/Hh)*2.6-1.2);
+      gx.strokeStyle='rgba(33,80,232,'+(.065*b2*(.35+.65*br2))+')'; gx.beginPath(); gx.moveTo(0,Math.round(y)+.5); gx.lineTo(W,Math.round(y)+.5); gx.stroke(); }
+    requestAnimationFrame(g);
+  })(gT0);
+}
+
+</script>
+</body>
+</html>

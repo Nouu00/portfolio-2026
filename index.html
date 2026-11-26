@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>楊芷翎 Zhi — UI/UX 與視覺設計作品集</title>
+<meta name="description" content="楊芷翎 Zhi — UI/UX 與視覺設計作品集">
+<meta property="og:title" content="楊芷翎 Zhi — UI/UX 與視覺設計作品集">
+<meta property="og:description" content="楊芷翎 Zhi — UI/UX 與視覺設計作品集">
+<meta property="og:image" content="og.png">
+<meta name="theme-color" content="#efeff1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Inter V";src:url(images/intertight-var.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Fraunces X";src:url(images/fraunces-x.woff2) format("woff2");font-display:swap}
+
+:root{
+  --bg:#efeff1;
+  --ink:#1a1b22;
+  --mute:#8b8a97;
+  --line:rgba(33,80,232,.22);
+  --blue:#2150e8;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --pad:clamp(20px,3.2vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);-webkit-font-smoothing:antialiased}
+body{color:var(--ink);font-family:"Inter V","Noto Sans TC",system-ui,sans-serif;font-weight:400;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:var(--blue);color:#fff}
+
+/* ---------- 背景：朦朧流動 ---------- */
+.mist{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mist canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#glass{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;transition:opacity .3s}
+.goo{display:none}
+.noglass .goo{display:block}
+.noglass #glass{display:none}
+.mist.fallback{background:radial-gradient(40vw 50vw at 30% 30%,rgba(30,30,30,.45),transparent 70%),radial-gradient(30vw 30vw at 75% 60%,rgba(30,30,30,.3),transparent 70%)}
+@keyframes d2{to{transform:translate3d(-6vw,-14vh,0) scale(.9)}}
+@keyframes d3{to{transform:translate3d(-14vw,10vh,0) scale(1.2)}}
+.grain{position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  background:url(images/grain.png);animation:grain 1s steps(4) infinite}
+@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-4%)}75%{transform:translate(-1%,3%)}}
+
+main,header,footer{position:relative;z-index:2}
+
+/* ---------- 頁首 ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:var(--pad);pointer-events:none}
+header > *{pointer-events:auto}
+.mark{display:flex;align-items:center;gap:12px;font-size:14px;letter-spacing:.02em}
+.mark i{width:14px;height:14px;border-radius:50%;background:var(--blue);transition:transform .6s var(--ease)}
+.mark:hover i{transform:scale(1.6)}
+nav{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+nav a{font-size:clamp(18px,1.6vw,26px);color:var(--mute);letter-spacing:-.01em;transition:color .4s}
+nav a:hover{color:var(--ink)}
+nav a.on{color:var(--blue)}
+
+/* ---------- 首頁主視覺 ---------- */
+.hero{position:relative;height:100vh;min-height:620px}
+.goo{position:absolute;inset:0;filter:url(#goo);color:#1b1b1b;opacity:0;transition:opacity 2s ease .2s}
+.ready .goo{opacity:.92}
+.morph{position:absolute;left:0;right:0;top:44%;margin-top:-.5em;will-change:transform;height:1em;
+  font-size:clamp(84px,17vw,300px);font-weight:600;letter-spacing:-.055em;line-height:1;text-align:center;white-space:nowrap}
+.morph span{position:absolute;inset:0}
+.hero-id{position:absolute;left:var(--pad);bottom:var(--pad);max-width:900px}
+.hero-id h1{font-weight:500;font-size:clamp(34px,4.6vw,72px);letter-spacing:-.03em;line-height:1.02}
+.hero-id p{margin-top:.35em;font-size:clamp(20px,2.2vw,34px);color:var(--mute);letter-spacing:-.03em;line-height:1.1;font-weight:400}
+.hero-id small{display:block;margin-top:18px;font-size:15px;color:var(--mute)}
+.hero-id small a{color:var(--blue);background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .6s var(--ease)}
+.hero-id small a:hover{background-size:100% 1px}
+.ln{display:block;overflow:hidden}
+.ln > span{display:block;transform:translateY(105%);transition:transform 1.4s var(--ease)}
+.ready .hero-id .ln > span{transform:none}
+.ready .hero-id .ln:nth-child(2) > span{transition-delay:.12s}
+.ready .hero-id .ln:nth-child(3) > span{transition-delay:.24s}
+
+/* ---------- 區塊標題 ---------- */
+section.block{padding:18vh var(--pad) 8vh}
+.head{display:flex;align-items:baseline;gap:clamp(16px,2vw,32px);margin-bottom:9vh;border-top:1px solid var(--line);padding-top:22px}
+.head .no{font-family:"Fraunces X",serif;font-style:italic;font-size:clamp(28px,3vw,46px);color:var(--blue)}
+.head h2{will-change:transform;font-weight:500;font-size:clamp(48px,8vw,140px);letter-spacing:-.05em;line-height:.9}
+.head h2 .ch{display:inline-block;transform:translateY(110%);opacity:0;transition:transform 1.2s var(--ease),opacity 1.2s}
+.head.in h2 .ch{transform:none;opacity:1}
+.head .ln{padding-bottom:.08em}
+
+/* ---------- 作品 ---------- */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2vw,32px);row-gap:16vh}
+.work{display:block;position:relative}
+.work .media{position:relative;overflow:hidden;background:rgba(22,22,22,.06);
+  clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--ease)}
+.work.in .media{clip-path:inset(0 0 0 0)}
+.work .media img,.work .media .ph{width:100%;height:100%;object-fit:cover;
+  transform:scale(1.3);filter:blur(22px);transition:transform 2s var(--ease),filter 1.8s var(--ease)}
+.work .media .pl{position:absolute;inset:-8% 0;will-change:transform}
+.work .media .pl img{height:100%}
+.work.in .media img,.work.in .media .ph{transform:scale(1.02);filter:blur(0)}
+.work.in .media{transition:clip-path 1.6s var(--ease)}
+.work.in:hover .media{clip-path:inset(2.5% 2.5% 2.5% 2.5%);transition:clip-path .9s var(--ease)}
+.work.in:hover .media img{transform:scale(1.1);transition:transform 1.2s var(--ease)}
+.work .n{transition:transform .9s var(--ease),color .5s}
+.work:hover .n{transform:translateX(-8px);color:var(--ink)}
+.work .meta{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-top:22px}
+.work .t{font-size:clamp(22px,2.1vw,34px);font-weight:500;letter-spacing:-.025em;line-height:1.1}
+.work .n{font-family:"Fraunces X",serif;font-style:italic;font-size:clamp(18px,1.5vw,24px);color:var(--mute)}
+.work .meta .ln > span{transition:transform 1.3s var(--ease) .35s}
+.work.in .meta .ln > span{transform:none}
+.work .t span.u{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .7s var(--ease)}
+.work:hover .t span.u{background-size:100% 1px}
+
+/* 無圖片作品：霧面流動佔位 */
+.ph{position:absolute;inset:0;overflow:hidden;background:#d9d8d4}
+.ph b{position:absolute;border-radius:50%;filter:blur(38px);background:rgba(25,25,25,.55)}
+.ph b:nth-child(1){width:60%;height:80%;left:8%;top:12%;animation:d2 18s ease-in-out infinite alternate}
+.ph b:nth-child(2){width:36%;height:44%;right:6%;top:30%;opacity:.6;animation:d3 22s ease-in-out infinite alternate}
+.ph b:nth-child(3){width:14%;height:14%;right:26%;top:18%;filter:blur(2px);background:linear-gradient(#ddd,#3a3a3a);animation:none}
+
+.w1{grid-column:1/span 7}  .w1 .media{aspect-ratio:1233/778}
+.w2{grid-column:9/span 4;margin-top:22vh} .w2 .media{aspect-ratio:4/5}
+.w3{grid-column:3/span 6}  .w3 .media{aspect-ratio:16/10}
+.w4{grid-column:1/span 8}  .w4 .media{aspect-ratio:1400/593}
+.w5{grid-column:9/span 4;margin-top:30vh} .w5 .media{aspect-ratio:776/1054}
+.w6{grid-column:2/span 5;margin-top:-10vh} .w6 .media{aspect-ratio:4/3}
+.work.soon{cursor:default}
+
+
+/* ---------- 關於 ---------- */
+.about{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2vw,32px)}
+.about .photo{grid-column:1/span 4}
+.about .photo .media{aspect-ratio:776/950}
+.about .cv{grid-column:6/span 7;display:grid;grid-template-columns:1fr 1fr;gap:9vh clamp(24px,3vw,56px);align-content:start}
+.cv h3{font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--blue);margin-bottom:18px}
+.cv ul{list-style:none}
+.cv li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px;
+  opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.cv li span:last-child{color:var(--mute);text-align:right}
+.cv .in li{opacity:1;transform:none}
+
+/* ---------- 聯絡 ---------- */
+.contact{padding:20vh var(--pad) 6vh}
+.contact .label{font-size:13px;letter-spacing:.14em;color:var(--blue);margin-bottom:24px}
+.mail{display:inline-block;font-size:clamp(36px,7.4vw,128px);font-weight:500;letter-spacing:-.05em;line-height:1;
+  background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;padding-bottom:.08em;transition:background-size .9s var(--ease)}
+.mail:hover{background-size:100% 2px;color:var(--blue)}
+.mail{transition:background-size .9s var(--ease),color .5s}
+footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--pad);font-size:13px;color:var(--mute)}
+
+/* ---------- 手機 ---------- */
+@media (max-width:760px){
+  nav a{font-size:17px}
+  .morph{font-size:25vw;top:40%}
+  .hero-id small{margin-top:12px}
+  .grid{row-gap:10vh}
+  .w1,.w2,.w3,.w4,.w5,.w6{grid-column:1/-1;margin-top:0}
+  .about .photo{grid-column:1/span 9;margin-bottom:8vh}
+  .about .cv{grid-column:1/-1;grid-template-columns:1fr;gap:6vh}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition-duration:.01s!important}
+}
+.roll{display:inline-block;height:1.15em;overflow:hidden;vertical-align:top;color:var(--ink);
+  -webkit-mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent)}
+.rl{display:flex;flex-direction:column;will-change:transform}
+.rl span{display:block;height:1.15em;line-height:1.15em;white-space:nowrap}
+
+.reel{position:relative}
+.reel .pin{position:sticky;top:0;height:100vh;overflow:hidden}
+.reel .col{position:absolute;right:var(--pad);top:0;height:100%;width:min(58vw,980px)}
+.rrow{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:center;will-change:transform,height}
+.rrow .im{position:relative;height:88%;overflow:hidden;will-change:width}
+.rrow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.rrow.cur:hover img{transform:scale(1.04)}
+.reel .side{position:absolute;left:var(--pad);top:50%;transform:translateY(-50%);width:calc(100% - min(58vw,980px) - var(--pad)*3);z-index:3}
+.reel .kind{font-size:clamp(18px,1.6vw,26px);color:var(--mute);letter-spacing:-.02em;display:flex;gap:.35em;align-items:flex-start;margin-bottom:22px}
+.reel .kind .roll{color:var(--blue)}
+.reel .rl{transition:transform .9s var(--ease)}
+.reel .ttl{font-size:clamp(34px,4vw,72px);font-weight:500;letter-spacing:-.045em;line-height:1.02;transition:opacity .45s,filter .45s,transform .7s var(--ease)}
+.reel .ttl.sw{opacity:0;filter:blur(12px);transform:translateY(.2em)}
+.reel .idx{margin-top:34px;position:relative;display:flex;gap:10px;height:10px}
+.reel .idx i{width:10px;height:10px;border:1px solid rgba(33,80,232,.35);transition:border-color .4s}
+.reel .idx i.on{border-color:transparent}
+.reel .idx .blob{position:absolute;left:0;top:0;height:10px;background:var(--blue);border-radius:1px;will-change:transform,width}
+@media (max-width:760px){
+  .reel .col{right:auto;left:7vw;width:86vw;clip-path:inset(30vh 0 0 0)}
+  .reel .side{top:13vh;transform:none;width:auto;right:var(--pad)}
+  .reel .kind{margin-bottom:10px}
+  .reel .ttl{font-size:9vw}
+  .reel .idx{display:none}
+}
+
+.switch{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:40;display:flex;gap:4px;padding:5px;border-radius:99px;
+  background:rgba(230,229,226,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(22,22,22,.1)}
+.switch a{font-size:13px;padding:8px 14px;border-radius:99px;color:var(--mute);white-space:nowrap;transition:background .3s,color .3s}
+.switch a:hover{color:var(--ink)}
+.switch a.on{background:var(--ink);color:var(--bg)}
+@media (max-width:760px){.switch a{padding:8px 9px;font-size:12px}}
+#gridc{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+
+.switch{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:40;display:flex;gap:4px;padding:5px;border-radius:99px;
+  background:rgba(239,239,241,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(33,80,232,.2)}
+.switch a{font-size:13px;padding:8px 14px;border-radius:99px;color:var(--mute);white-space:nowrap;transition:background .3s,color .3s}
+.switch a:hover{color:var(--ink)}
+.switch a.on{background:var(--blue);color:#fff}
+@media (max-width:760px){.switch a{padding:8px 9px;font-size:12px}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="goo" color-interpolation-filters="sRGB">
+    <feGaussianBlur id="gooBlur" in="SourceGraphic" stdDeviation="9" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -11"/>
+  </filter>
+</svg>
+
+<div class="mist" aria-hidden="true"><canvas id="fog"></canvas></div>
+<canvas id="glass" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <a class="mark" href="#top" aria-label="Top"><i></i></a>
+  <nav>
+    <a href="#uiux">UI / UX</a>
+    <a href="#visual">Visual Design</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="goo" aria-hidden="true">
+      <div class="morph"><span id="m1"></span><span id="m2"></span></div>
+    </div>
+    <div class="hero-id">
+      <h1 class="ln"><span>嗨，我是楊芷翎</span></h1>
+      <p class="ln"><span>用研究找出問題，再用視覺把答案說清楚。</span></p>
+      <small class="ln"><span>政大數位內容所 · 1 年 UX 實習 · 正在尋找實習機會 · <a href="mailto:Loucked66@gmail.com">Loucked66@gmail.com</a></span></small>
+    </div>
+  </section>
+
+<section class="block" id="uiux" style="padding-bottom:0"><div class="head reveal"><h2 class="ln split">Works</h2></div></section>
+<section class="reel"><div class="pin"><div class="col"><a class="rrow" href="openpoint.html"><div class="im"><img src="images/openpoint-hero.jpg" alt="OPENPOINT Redesign"></div></a><a class="rrow" href="tosstalk.html"><div class="im"><img src="images/ph-tosstalk.jpg" alt="丟丟 TossTalk"></div></a><a class="rrow" href="tabelog.html"><div class="im"><img src="images/ph-tabelog.jpg" alt="Tabelog 再設計"></div></a><a class="rrow" href="aidentity.html" id="visual"><div class="im"><img src="images/aidentity-banner.jpg" alt="(AI)dentity"></div></a><a class="rrow" href="poster.html"><div class="im"><img src="images/po-full.jpg" alt="生生死死，生生慢"></div></a><div class="rrow soon"><div class="im"><img src="images/ph-viking.jpg" alt="Viking House"></div></div></div>
+<div class="side"><div class="kind"><span>Designing</span><span class="roll"><span class="rl"><span>UI / UX</span><span>Visual Design</span></span></span></div><div class="ttl" id="bt">OPENPOINT Redesign</div><div class="idx"><i></i><i></i><i></i><i></i><i></i><i></i><b class="blob"></b></div></div></div></section>
+  <section class="block" id="about">
+    <div class="head reveal"><h2 class="ln split">About</h2></div>
+    <div class="about">
+      <div class="photo work reveal"><div class="media"><img src="images/me-full.jpg" alt="楊芷翎的照片" loading="lazy"></div></div>
+      <div class="cv">
+        <div class="reveal"><h3>EXPERIENCE</h3><ul>
+          <li><span>OpenHCI 視覺行銷部</span><span>2026</span></li>
+          <li><span>Jubo 智齡科技 UX 實習</span><span>2023–24</span></li>
+          <li><span>中華電信 蹲點「與泥共好」</span><span>2024</span></li>
+          <li><span>BUILDMODE Hackathon</span><span>2026</span></li>
+        </ul></div>
+        <div class="reveal"><h3>EDUCATION</h3><ul>
+          <li><span>政治大學 數位內容所</span><span>NOW</span></li>
+          <li><span>大同大學 媒體設計系</span><span>2022–25</span></li>
+          <li><span>復興商工 美術系</span><span>2017–20</span></li>
+        </ul></div>
+        <div class="reveal"><h3>AWARDS</h3><ul>
+          <li><span>華燦獎 三等獎</span><span>2024</span></li>
+          <li><span>金點新秀 贊助特別獎</span><span>2025</span></li>
+          <li><span>放視大賞 入圍</span><span>2025</span></li>
+          <li><span>城市通黑客松 決賽入圍</span><span>2026</span></li>
+        </ul></div>
+        <div class="reveal"><h3>SKILLS</h3><ul>
+          <li><span>UI / UX</span><span>Figma · FigJam · Miro</span></li>
+          <li><span>視覺設計</span><span>Illustrator · Photoshop · InDesign</span></li>
+          <li><span>3D 建模</span><span>Blender · Maya</span></li>
+          <li><span>影片剪輯</span><span>Premiere Pro · After Effects</span></li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="label">CONTACT</div>
+    <a class="mail" href="mailto:Loucked66@gmail.com">Loucked66@gmail.com</a>
+  </section>
+</main>
+
+<footer><span>© 2026 Yang Zhi Ling</span><a href="#top">Top ↑</a></footer>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(function(){ document.body.classList.add('ready'); });
+
+  /* 標題拆字 */
+  document.querySelectorAll('.split').forEach(function(h){
+    var t = h.textContent; h.innerHTML = '';
+    Array.from(t).forEach(function(c,i){
+      var s = document.createElement('span'); s.className='ch';
+      s.textContent = c === ' ' ? ' ' : c;
+      s.style.transitionDelay = (i*0.035)+'s'; h.appendChild(s);
+    });
+  });
+
+  /* 進場 */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('li').forEach(function(li,i){ li.style.transitionDelay=(i*0.07)+'s'; });
+      io.unobserve(e.target);
+    });
+  },{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* 導覽高亮 */
+  var links = document.querySelectorAll('nav a');
+  var so = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting) links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+e.target.id); });
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  ['uiux','visual','about'].forEach(function(id){ so.observe(document.getElementById(id)); });
+
+  /* 流動文字 */
+  var words = ['UI / UX','Visual','Design'];
+  var m1 = document.getElementById('m1'), m2 = document.getElementById('m2');
+  var morphT = .75, holdT = 1.1, idx = 0, t = 0, morphing = false, last = performance.now();
+  function setMorph(f){
+    m2.style.filter = 'blur(' + Math.min(8/f - 8, 60) + 'px)'; m2.style.opacity = Math.pow(f,.4);
+    var g = 1 - f;
+    m1.style.filter = 'blur(' + Math.min(8/g - 8, 60) + 'px)'; m1.style.opacity = Math.pow(g,.4);
+  }
+  function settle(){
+    m1.textContent = words[idx]; m2.textContent = words[(idx+1)%words.length];
+    m1.style.filter=''; m1.style.opacity=1; m2.style.filter='blur(60px)'; m2.style.opacity=0;
+  }
+  settle();
+  var gooBlur = document.getElementById('gooBlur'), morph = document.querySelector('.morph'), hero = document.querySelector('.hero');
+  function fitGoo(){ var fs = parseFloat(getComputedStyle(morph).fontSize); gooBlur.setAttribute('stdDeviation', Math.max(3.5, Math.min(9, fs*.035)).toFixed(1)); }
+  fitGoo(); addEventListener('resize', fitGoo);
+
+  var mx = 0, my = 0, tmx = 0, tmy = 0;
+  addEventListener('mousemove', function(e){ tmx = e.clientX/innerWidth - .5; tmy = e.clientY/innerHeight - .5; });
+
+  /* 作品圖片視差 */
+  var pls = Array.from(document.querySelectorAll('.work .pl'));
+  var heads = Array.from(document.querySelectorAll('.head h2'));
+
+  function loop(now){
+    var dt = Math.min((now-last)/1000,.1); last = now;
+    if(!reduce){
+      t += dt;
+      if(!morphing && t>holdT){ morphing=true; t=0; }
+      if(morphing){
+        var f = Math.min(t/morphT,1); setMorph(Math.max(f,.0001));
+        if(f>=1){ morphing=false; t=0; idx=(idx+1)%words.length; settle(); }
+      }
+    }
+    mx += (tmx-mx)*.06; my += (tmy-my)*.06;
+    var p = Math.min(scrollY / innerHeight, 1.2);
+    morph.style.transform = 'translate3d(' + (mx*-40) + 'px,' + (my*-24 - p*160) + 'px,0) scale(' + (1 + p*.25) + ') skewX(' + (mx*-6) + 'deg)';
+    morph.style.opacity = Math.max(0, 1 - p*1.4);
+    var vh = innerHeight;
+    pls.forEach(function(el){
+      var r = el.parentNode.getBoundingClientRect();
+      if(r.bottom < 0 || r.top > vh) return;
+      var k = (r.top + r.height/2 - vh/2) / vh;
+      el.style.transform = 'translate3d(0,' + (k*-9) + '%,0)';
+    });
+    heads.forEach(function(h){
+      var r = h.getBoundingClientRect();
+      if(r.bottom < -200 || r.top > vh+200) return;
+      h.style.transform = 'translate3d(' + ((r.top/vh - .5) * -60) + 'px,0,0)';
+    });
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+
+{
+  var DATA=[["01", "OPENPOINT Redesign", "UI / UX"], ["02", "丟丟 TossTalk", "UI / UX"], ["03", "Tabelog 再設計", "UI / UX"], ["04", "(AI)dentity", "Visual Design"], ["05", "生生死死，生生慢", "Visual Design"], ["06", "Viking House", "Visual Design"]], CATS=[]; DATA.forEach(function(d){ if(CATS.indexOf(d[2])<0) CATS.push(d[2]); });
+  var reel=document.querySelector('.reel'), rows=[].slice.call(reel.querySelectorAll('.rrow')), N=rows.length, col=reel.querySelector('.col');
+  var bt=document.getElementById('bt'), rl=reel.querySelector('.rl'), dots=[].slice.call(reel.querySelectorAll('.idx i'));
+  function setH(){ reel.style.height=(innerHeight*(1+(N-1)*.7))+'px'; }
+  setH(); addEventListener('resize',setH);
+  var cur=0, shown=-1, bl=reel.querySelector('.blob'), bTail=0;
+  (function f(){
+    var H=innerHeight, cw=col.offsetWidth, mob=innerWidth<=760;
+    var p=Math.min(Math.max((scrollY-reel.offsetTop)/(reel.offsetHeight-H),0),1)*(N-1);
+    cur+=(p-cur)*.1;
+    var small=H*(mob?.1:.13), bigH=Math.min(H*(mob?.42:.74), cw*.72), hs=[], ws=[];
+    rows.forEach(function(r,i){ var d=i-cur, k=Math.exp(-d*d*2.4); hs.push(small+(bigH-small)*k); ws.push(.34+.66*k); });
+    var tops=[], acc=0; hs.forEach(function(h){ tops.push(acc); acc+=h; });
+    var k0=Math.floor(cur), fr=cur-k0, k1=Math.min(k0+1,N-1);
+    var c0=tops[k0]+hs[k0]/2, c1=tops[k1]+hs[k1]/2, cyc=mob?H*.6:H/2, shift=cyc-(c0+(c1-c0)*fr);
+    bTail+=(cur-bTail)*.12; var a0=Math.min(cur,bTail), a1=Math.max(cur,bTail); bl.style.transform='translateX('+(a0*20)+'px)'; bl.style.width=(10+(a1-a0)*20)+'px';
+    var ci=Math.round(cur);
+    rows.forEach(function(r,i){
+      r.style.height=hs[i]+'px'; r.style.transform='translate3d(0,'+(tops[i]+shift)+'px,0)';
+      r.querySelector('.im').style.width=(ws[i]*100)+'%';
+      r.classList.toggle('cur', i===ci);
+    });
+    if(ci!==shown){
+      var first=shown<0; shown=ci;
+      rl.style.transform='translateY('+(-CATS.indexOf(DATA[ci][2])*1.15)+'em)';
+      dots.forEach(function(d,i){ d.classList.toggle('on', i===ci); });
+      if(first){ bt.textContent=DATA[ci][1]; }
+      else { bt.classList.add('sw'); setTimeout(function(){ bt.textContent=DATA[shown][1]; bt.classList.remove('sw'); },320); }
+    }
+    requestAnimationFrame(f);
+  })();
+}
+
+  /* 背景：流動霧面 ＋ 玻璃文字（WebGL） */
+  var FOG = [
+    'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+    'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
+    ' return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}',
+    'float fbm(vec2 p){float v=0.,a=.5;mat2 R=mat2(.8,.6,-.6,.8);for(int i=0;i<4;i++){v+=a*n(p);p=R*p*2.;a*=.5;}return v;}',
+    'uniform sampler2D tl;',
+    'vec3 fog(vec2 uv,float asp,float t,vec2 m,float sc,vec2 px){vec2 tu2=vec2(uv.x,1.-uv.y);float tr=texture2D(tl,tu2).a;vec2 e2=vec2(.012,.012);float gx=texture2D(tl,tu2+vec2(e2.x,0.)).a-texture2D(tl,tu2-vec2(e2.x,0.)).a;float gy=texture2D(tl,tu2+vec2(0.,e2.y)).a-texture2D(tl,tu2-vec2(0.,e2.y)).a;uv+=vec2(gy,gx)*.06;vec2 p=uv;p.x*=asp;p*=.9;p.y+=sc*.3;',
+    ' float T=t*.045;',
+    ' vec2 q=vec2(fbm(p+vec2(0.,T)),fbm(p+vec2(5.2,1.3)-T*.8));',
+    ' vec2 w=vec2(fbm(p+3.*q+vec2(1.7,9.2)+T*1.2+m*.4),fbm(p+3.*q+vec2(8.3,2.8)-T));',
+    ' float f=fbm(p+2.4*w);',
+    ' float d=smoothstep(.26,.78,f)*(1.-tr*.92);',
+    ' vec3 bg=vec3(.937,.937,.945);vec3 ink=vec3(.36,.35,.42);',
+    ' float st=px.x<0.?d*.75:step(h(floor(px)),d*.75);',
+    ' vec3 c=mix(bg,ink,d*.26+st*.16);',
+    ' vec2 g=px/4.+vec2(T*14.,-T*9.);vec2 cell=floor(g);',
+    ' float sp=step(.9988-d*(1.-d)*.008,h(cell+3.7))*step(length(fract(g)-.5),.32+.18*h(cell));',
+    ' return mix(c,vec3(.13,.31,.91),px.x<0.?0.:sp*.9);}'
+  ].join('\n');
+  var VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  var FS_BG = 'precision mediump float;uniform vec2 r;uniform float t;uniform vec2 m;uniform float sc;\n' + FOG +
+    '\nvoid main(){vec2 uv=gl_FragCoord.xy/r;gl_FragColor=vec4(fog(uv,r.x/r.y,t,m,sc,gl_FragCoord.xy),1.);}';
+  var FS_GL = [
+    'precision mediump float;uniform vec2 r;uniform vec2 vp;uniform vec2 tr;uniform sampler2D tx;uniform float t;uniform vec2 m;uniform float sc;uniform vec2 lt;uniform float fade;',
+    FOG,
+    'float H(vec2 u){return texture2D(tx,u).a;}',
+    'vec3 bgc(vec2 uv){return fog(uv,vp.x/vp.y,t,m,sc,floor(uv*vp*.5)+.5);}',
+    'void main(){vec2 uv=gl_FragCoord.xy/r;vec2 tu=vec2(uv.x,1.-uv.y);',
+    ' float h=H(tu); float hs=H(tu-vec2(.0,.014)); if(h<.44){ float sa=smoothstep(.12,.6,hs)*(1.-smoothstep(.3,.44,h))*.11*fade; if(sa<.002) discard; gl_FragColor=vec4(0.,0.,0.,sa); return; }',
+    ' vec2 e=1.2/tr;',
+    ' float hx=H(tu+vec2(e.x,0.))-H(tu-vec2(e.x,0.)); float hy=H(tu+vec2(0.,e.y))-H(tu-vec2(0.,e.y));',
+    ' float a=smoothstep(.44,.5,h);',
+    ' vec3 N=normalize(vec3(-hx*2.4,hy*2.4,1.));',
+    ' float edge=1.-smoothstep(.5,.8,h);',
+    ' vec2 dir=N.xy;',
+    ' vec2 off=dir*.06*edge+vec2(.006,-.008);',
+    ' vec3 col=vec3(0.); for(int q=0;q<8;q++){ float an=float(q)*.785+1.; col+=bgc(uv+off*.6+vec2(cos(an),sin(an))*.016); } col/=8.;',
+    ' float fr=pow(1.-N.z,1.4); vec2 ld=normalize(lt); float lit=dot(normalize(dir+1e-4),ld);',
+    ' col=mix(col,vec3(.955,.96,.975),.5);',
+    ' col=mix(col,vec3(.8,.82,.9),.18*(1.-smoothstep(.5,.95,h)));',
+    ' col+=vec3(1.)*pow(fr,1.8)*smoothstep(.0,.9,lit)*.45;',
+    ' col=mix(col,vec3(.55,.57,.68),pow(fr,1.5)*smoothstep(.0,.9,-lit)*.35);',
+    ' col+=vec3(.13,.31,.91)*pow(fr,2.)*.06;',
+    ' float grn=fract(sin(dot(floor(gl_FragCoord.xy),vec2(12.9898,78.233)))*43758.5453); col+=(grn-.5)*.035;',
+    ' float al=a*fade;',
+    ' gl_FragColor=vec4(col*al,al);}'
+  ].join('\n');
+  function prog(g, fsrc){
+    function sh(k,src){ var o=g.createShader(k); g.shaderSource(o,src); g.compileShader(o); return o; }
+    var pr=g.createProgram(); g.attachShader(pr,sh(g.VERTEX_SHADER,VS)); g.attachShader(pr,sh(g.FRAGMENT_SHADER,fsrc)); g.linkProgram(pr);
+    if(!g.getProgramParameter(pr,g.LINK_STATUS)) return null;
+    g.useProgram(pr);
+    var b=g.createBuffer(); g.bindBuffer(g.ARRAY_BUFFER,b);
+    g.bufferData(g.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),g.STATIC_DRAW);
+    var l=g.getAttribLocation(pr,'p'); g.enableVertexAttribArray(l); g.vertexAttribPointer(l,2,g.FLOAT,false,0,0);
+    return function(k){ return g.getUniformLocation(pr,k); };
+  }
+  var cv = document.getElementById('fog'), gl = cv.getContext('webgl',{antialias:false});
+  var U = gl && prog(gl, FS_BG);
+  if(!U){ document.querySelector('.mist').classList.add('fallback'); document.body.classList.add('noglass'); return; }
+  function size(){ var q=.5; cv.width=Math.round(innerWidth*q); cv.height=Math.round(innerHeight*q); gl.viewport(0,0,cv.width,cv.height); }
+  size(); addEventListener('resize', size);
+
+  /* 玻璃文字 */
+  var gc = document.getElementById('glass'), g2 = gc.getContext('webgl',{antialias:false,premultipliedAlpha:true});
+  var G = g2 && prog(g2, FS_GL);
+  var tc = document.createElement('canvas'), tx = tc.getContext('2d'), TS = .75, tex = null;
+  if(!G) document.body.classList.add('noglass');
+  else {
+    tex = g2.createTexture(); g2.bindTexture(g2.TEXTURE_2D,tex);
+    ['TEXTURE_WRAP_S','TEXTURE_WRAP_T'].forEach(function(k){ g2.texParameteri(g2.TEXTURE_2D,g2[k],g2.CLAMP_TO_EDGE); });
+    g2.texParameteri(g2.TEXTURE_2D,g2.TEXTURE_MIN_FILTER,g2.LINEAR); g2.texParameteri(g2.TEXTURE_2D,g2.TEXTURE_MAG_FILTER,g2.LINEAR);
+    g2.enable(g2.BLEND); g2.blendFunc(g2.ONE,g2.ONE_MINUS_SRC_ALPHA);
+  }
+  function gsize(){
+    if(!G) return;
+    var d=Math.min(devicePixelRatio||1,1.5);
+    gc.width=Math.round(innerWidth*d); gc.height=Math.round(innerHeight*d); g2.viewport(0,0,gc.width,gc.height);
+    tc.width=Math.round(innerWidth*TS); tc.height=Math.round(innerHeight*TS);
+  }
+  gsize(); addEventListener('resize', gsize);
+  function word(w, alpha, blur, x, y, fs){
+    if(alpha<=.003) return;
+    tx.save();
+    tx.font='600 '+fs+'px "Inter V", "Noto Sans TC", sans-serif';
+    if('letterSpacing' in tx) tx.letterSpacing=(-fs*.055)+'px';
+    tx.textAlign='center'; tx.textBaseline='middle';
+    tx.shadowColor='rgba(0,0,0,'+alpha+')'; tx.shadowBlur=blur; tx.shadowOffsetX=20000;
+    tx.fillStyle='#000'; tx.fillText(w, x-20000, y);
+    tx.restore();
+  }
+  var ex=-1e4, ey=-1e4, lastMove=-1e9, T0=performance.now();
+  addEventListener('mousemove',function(e){ ex=e.clientX; ey=e.clientY; lastMove=performance.now(); });
+  addEventListener('touchmove',function(e){ var q=e.touches[0]; ex=q.clientX; ey=q.clientY; lastMove=performance.now(); },{passive:true});
+  function pointer(now, cx, cy, spanX){
+    if(now-lastMove < 2500) return [ex, ey, 1];
+    var k=(now-T0)/1000;
+    return [cx + Math.sin(k*.55)*spanX*.5, cy + Math.sin(k*1.1)*innerHeight*.05, 0];
+  }
+  function glyph(ch, x, y, fs, wt, alpha, blur, sx, rot){
+    if(alpha<=.003) return;
+    tx.save();
+    tx.translate(x, y); if(rot) tx.rotate(rot); if(sx && sx!==1) tx.scale(sx,1);
+    tx.font=wt+' '+fs+'px "Inter V", "Noto Sans TC", sans-serif';
+    tx.textBaseline='middle'; tx.textAlign='left';
+    tx.shadowColor='rgba(0,0,0,'+alpha+')'; tx.shadowBlur=blur; tx.shadowOffsetX=20000;
+    tx.fillStyle='#000'; tx.fillText(ch, -20000/(sx||1), 0);
+    tx.restore();
+  }
+  function measure(ch, fs, wt){ tx.font=wt+' '+fs+'px "Inter V", "Noto Sans TC", sans-serif'; return tx.measureText(ch).width; }
+  var trc=document.createElement('canvas'), trx=trc.getContext('2d'), ppx=0, ppy=0;
+  function tsize(){ trc.width=Math.round(innerWidth/6); trc.height=Math.round(innerHeight/6); }
+  tsize(); addEventListener('resize', tsize);
+  function mkT(g){ var tt=g.createTexture(); g.activeTexture(g.TEXTURE1); g.bindTexture(g.TEXTURE_2D,tt);
+    ['TEXTURE_WRAP_S','TEXTURE_WRAP_T'].forEach(function(k){ g.texParameteri(g.TEXTURE_2D,g[k],g.CLAMP_TO_EDGE); });
+    g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MIN_FILTER,g.LINEAR); g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MAG_FILTER,g.LINEAR);
+    g.activeTexture(g.TEXTURE0); return tt; }
+  function upTrail(g, tt){ if(!tt) return; g.activeTexture(g.TEXTURE1); g.bindTexture(g.TEXTURE_2D,tt);
+    g.texImage2D(g.TEXTURE_2D,0,g.RGBA,g.RGBA,g.UNSIGNED_BYTE,trc); g.activeTexture(g.TEXTURE0); }
+  var trTex1=mkT(gl), trTex2=G?mkT(g2):null;
+  gl.uniform1i(U('tl'),1); if(G) g2.uniform1i(G('tl'),1);
+  var GLY={
+    'U':['X...X','X...X','X...X','X...X','X...X','X...X','.XXX.'],
+    'I':['XXXXX','..X..','..X..','..X..','..X..','..X..','XXXXX'],
+    '/':['....X','....X','...X.','..X..','.X...','X....','X....'],
+    'X':['X...X','X...X','.X.X.','..X..','.X.X.','X...X','X...X'],
+    'V':['X...X','X...X','X...X','X...X','.X.X.','.X.X.','..X..'],
+    'S':['.XXXX','X....','X....','.XXX.','....X','....X','XXXX.'],
+    'A':['.XXX.','X...X','X...X','XXXXX','X...X','X...X','X...X'],
+    'L':['X....','X....','X....','X....','X....','X....','XXXXX'],
+    'D':['XXXX.','X...X','X...X','X...X','X...X','X...X','XXXX.'],
+    'E':['XXXXX','X....','X....','XXXX.','X....','X....','XXXXX'],
+    'G':['.XXXX','X....','X....','X..XX','X...X','X...X','.XXX.'],
+    'N':['X...X','XX..X','XX..X','X.X.X','X..XX','X..XX','X...X']
+  };
+  var BW=['UI/UX','VISUAL','DESIGN'], COLS=35, ROWS=7;
+  var TG=BW.map(function(w){
+    var pts=[], tw=w.length*6-1, x0=Math.floor((COLS-tw)/2);
+    w.split('').forEach(function(ch,ci){ GLY[ch].forEach(function(row,y){ row.split('').forEach(function(c,x){ if(c==='X') pts.push([x0+ci*6+x,y]); }); }); });
+    return pts;
+  });
+  var NB=Math.max.apply(null,TG.map(function(t){return t.length;}));
+  function assign(w){ var t=TG[w].slice().sort(function(a,b){return a[0]-b[0]||a[1]-b[1];}); return t; }
+  var blocks=[], first=assign(0);
+  for(var bi=0;bi<NB;bi++){ var q=first[bi%first.length]; blocks.push({x:q[0],y:q[1],fx:q[0],fy:q[1],tx:q[0],ty:q[1],d:0,hz:Math.random()<.5}); }
+  var bWord=0, bT0=performance.now(), HOLD=2300, MOVE=1300;
+  function retarget(){
+    bWord=(bWord+1)%BW.length; var t=assign(bWord);
+    var order=blocks.map(function(b,i){return i;}).sort(function(a,c){return blocks[a].x-blocks[c].x||blocks[a].y-blocks[c].y;});
+    order.forEach(function(bi2,k){ var b=blocks[bi2], q=t[Math.floor(k*t.length/NB)];
+      b.fx=b.x; b.fy=b.y; b.tx=q[0]; b.ty=q[1]; b.d=(q[0]/COLS)*.35+Math.random()*.12; b.hz=Math.random()<.5; });
+    bT0=performance.now();
+  }
+  function ease(x){ return x<.5?8*x*x*x*x:1-Math.pow(-2*x+2,4)/2; }
+  var gridc=document.createElement('canvas'); gridc.id='gridc'; gridc.setAttribute('aria-hidden','true');
+  document.body.insertBefore(gridc, document.querySelector('.grain'));
+  var gx=gridc.getContext('2d');
+
+  /* 全頁網格 */
+  (function(){
+    var lit={}, gT0=performance.now(), lastG=gT0, mxg=-1e4, myg=-1e4, nextSpark=0;
+    addEventListener('mousemove',function(e){ mxg=e.clientX; myg=e.clientY; });
+    function frame(now){
+      var G=window.__G; if(!G){ requestAnimationFrame(frame); return; }
+      var dpr=Math.min(devicePixelRatio||1,2), Wv=innerWidth, Hv=innerHeight;
+      if(gridc.width!==Math.round(Wv*dpr)||gridc.height!==Math.round(Hv*dpr)){ gridc.width=Math.round(Wv*dpr); gridc.height=Math.round(Hv*dpr); }
+      gx.setTransform(dpr,0,0,dpr,0,0); gx.clearRect(0,0,Wv,Hv);
+      var dt=Math.min((now-lastG)/1000,.1); lastG=now; var el=(now-gT0)/1000;
+      var st=G.cell*(Wv<=760?4:2), ox=G.ox, oy=G.oy;
+      var x0=ox-Math.ceil(ox/st)*st, y0=oy-Math.ceil((oy+st)/st)*st;
+      /* 游標與閃爍格 */
+      var ci=Math.floor((mxg-ox)/st), cj=Math.floor((myg-oy)/st);
+      if(mxg>-1e3){ lit[ci+','+cj]=1; }
+      if(now>nextSpark){ nextSpark=now+500+Math.random()*900;
+        var ri=Math.floor((Math.random()*Wv-ox)/st), rj=Math.floor((Math.random()*Hv-oy)/st); lit[ri+','+rj]=Math.max(lit[ri+','+rj]||0,.8); }
+      var dec=Math.exp(-dt/.7);
+      for(var k in lit){ var v=lit[k]*dec; if(v<.02){ delete lit[k]; continue; } lit[k]=v;
+        var ij=k.split(','), X=ox+(+ij[0])*st, Y=oy+(+ij[1])*st;
+        gx.fillStyle='rgba(33,80,232,'+(v*.028)+')'; gx.fillRect(X,Y,st,st);
+        gx.strokeStyle='rgba(33,80,232,'+(v*.09)+')'; gx.lineWidth=1; gx.strokeRect(Math.round(X)+.5,Math.round(Y)+.5,Math.round(st)-1,Math.round(st)-1); }
+      /* 線條：由中心向外展開 */
+      gx.lineWidth=1;
+      for(var x=x0;x<=Wv;x+=st){ var a=Math.min(Math.max((el-.3-Math.abs(x-Wv/2)/Wv*1.2)/.8,0),1); if(a<=0) continue;
+        var ext=a*Hv/2+(a>=1?Hv:0);
+        var br=.5+.5*Math.sin(el*.9-(x/Wv)*4.2-(Hv/Wv)); gx.strokeStyle='rgba(33,80,232,'+(.07*a*(.35+.65*br))+')'; gx.beginPath(); var xx=Math.round(x)+.5; gx.moveTo(xx,Math.max(0,Hv/2-ext)); gx.lineTo(xx,Math.min(Hv,Hv/2+ext)); gx.stroke(); }
+      for(var y=y0;y<=Hv;y+=st){ var b=Math.min(Math.max((el-.3-Math.abs(y-Hv/2)/Hv*1.2)/.8,0),1); if(b<=0) continue;
+        var ex2=b*Wv/2+(b>=1?Wv:0);
+        var br2=.5+.5*Math.sin(el*.9-(y/Hv)*2.6-1.2); gx.strokeStyle='rgba(33,80,232,'+(.07*b*(.35+.65*br2))+')'; gx.beginPath(); var yy=Math.round(y)+.5; gx.moveTo(Math.max(0,Wv/2-ex2),yy); gx.lineTo(Math.min(Wv,Wv/2+ex2),yy); gx.stroke(); }
+      /* 十字標記 */
+      var ca=Math.min(Math.max((el-1.2)/1,0),1);
+      if(ca>0){ gx.strokeStyle='rgba(33,80,232,'+(.26*ca*(.55+.45*Math.sin(el*.7)))+')'; gx.beginPath();
+        for(var x2=x0;x2<=Wv+st;x2+=st){ var ii=Math.round((x2-ox)/st); if(((ii%6)+6)%6) continue;
+          for(var y2=y0;y2<=Hv+st;y2+=st){ var jj=Math.round((y2-oy)/st); if(((jj%5)+5)%5) continue;
+            var px=Math.round(x2)+.5, py=Math.round(y2)+.5; gx.moveTo(px-4,py); gx.lineTo(px+4,py); gx.moveTo(px,py-4); gx.lineTo(px,py+4); } }
+        gx.stroke(); }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+  var lx=-.6, ly=.7;
+  function drawGlass(now){
+    if(!G) return;
+    var p=Math.min(scrollY/innerHeight,1.2), fade=Math.max(0,1-p*1.4);
+    gc.style.opacity = fade>0 ? 1 : 0;
+    if(fade<=0){ window.__G&&(window.__G.fade=0); return; }
+    var W=tc.width, Hh=tc.height;
+    tx.clearRect(0,0,W,Hh);
+    var fsCss=parseFloat(getComputedStyle(morph).fontSize)*(1+p*.25), fs=fsCss*TS;
+    var cy=(innerWidth<=760?.40:.44)*innerHeight - p*160 + my*-24, cx=innerWidth/2 + mx*-40;
+    var mob=innerWidth<=760, Wv=innerWidth, Hv=innerHeight;
+    var cell=Math.min(Wv*(mob?.9:.62)/(COLS*2), Hv*.42/(ROWS*2+2));
+    var gw=COLS*2*cell, gh=ROWS*2*cell, ox=Math.round((Wv-gw)/2), oy=Math.round((mob?.38:.42)*Hv - gh/2) - scrollY*.35; window.__G={cell:cell,ox:ox,oy:oy,gw:gw,gh:gh,fade:fade};
+    var el=now-bT0;
+    if(el>HOLD+MOVE+600) retarget(), el=0;
+    var u=Math.min(Math.max((el-HOLD)/MOVE,0),1);
+    var c2=cell*2, bb=Math.max(2, c2*.26*TS), bdt=Math.min((now-(window.__bl||now))/1000,.1); window.__bl=now; var lf=1-Math.exp(-bdt/.07);
+    tx.save(); tx.shadowColor='rgba(0,0,0,1)'; tx.shadowBlur=bb; tx.shadowOffsetX=20000; tx.fillStyle='#000';
+    function R(a,b2,c,d){ var x0=Math.min(a,c), y0=Math.min(b2,d), x1=Math.max(a,c)+1, y1=Math.max(b2,d)+1;
+      tx.fillRect((ox+x0*c2-c2*.04)*TS-20000, (oy+y0*c2-c2*.04)*TS, (x1-x0)*c2*TS+c2*TS*.08, (y1-y0)*c2*TS+c2*TS*.08); }
+    blocks.forEach(function(b){
+      var k=ease(Math.min(Math.max((u-b.d)/(1-.47),0),1));
+      var kx,ky; if(b.hz){ kx=Math.min(k*2,1); ky=Math.max(k*2-1,0); } else { ky=Math.min(k*2,1); kx=Math.max(k*2-1,0); }
+      b.x=b.fx+(b.tx-b.fx)*kx; b.y=b.fy+(b.ty-b.fy)*ky;
+      if(b.lx===undefined){ b.lx=b.x; b.ly=b.y; }
+      b.lx+=(b.x-b.lx)*lf; b.ly+=(b.y-b.ly)*lf;
+      if(k>=1){ b.fx=b.tx; b.fy=b.ty; }
+      if(b.hz){ R(b.lx,b.ly,b.x,b.ly); R(b.x,b.ly,b.x,b.y); }
+      else { R(b.lx,b.ly,b.lx,b.y); R(b.lx,b.y,b.x,b.y); }
+    });
+    tx.restore();
+    var pt=pointer(now, cx, cy, fsCss*3.2);
+    var TW=trc.width, TH=trc.height, ts=TW/innerWidth;
+    trx.globalCompositeOperation='destination-out'; trx.fillStyle='rgba(0,0,0,.012)'; trx.fillRect(0,0,TW,TH);
+    trx.globalCompositeOperation='source-over';
+    var sp=Math.min(Math.hypot(pt[0]-ppx, pt[1]-ppy)/40,1); ppx=pt[0]; ppy=pt[1];
+    var R=Math.max(innerWidth,700)*.2*ts, gr=trx.createRadialGradient(pt[0]*ts,pt[1]*ts,0,pt[0]*ts,pt[1]*ts,R);
+    var a0=.14+sp*.4; gr.addColorStop(0,'rgba(0,0,0,'+a0+')'); gr.addColorStop(1,'rgba(0,0,0,0)');
+    trx.fillStyle=gr; trx.beginPath(); trx.arc(pt[0]*ts,pt[1]*ts,R,0,7); trx.fill();
+    upTrail(g2, trTex2);
+    g2.bindTexture(g2.TEXTURE_2D,tex);
+    g2.texImage2D(g2.TEXTURE_2D,0,g2.RGBA,g2.RGBA,g2.UNSIGNED_BYTE,tc);
+    lx += ((-.6 + mx*2.2) - lx)*.06; ly += ((.7 - my*2) - ly)*.06;
+    g2.clearColor(0,0,0,0); g2.clear(g2.COLOR_BUFFER_BIT);
+    g2.uniform2f(G('r'),gc.width,gc.height); g2.uniform2f(G('vp'),innerWidth,innerHeight); g2.uniform2f(G('tr'),W,Hh);
+    g2.uniform1i(G('tx'),0); g2.uniform1f(G('t'),reduce?0:(now-t0)/1000); g2.uniform2f(G('m'),mx,my); g2.uniform1f(G('sc'),fsc);
+    g2.uniform2f(G('lt'),lx,ly); g2.uniform1f(G('fade'),fade);
+    g2.drawArrays(g2.TRIANGLES,0,6);
+  }
+
+  var t0 = performance.now(), fsc = 0;
+  (function draw(now){
+    fsc += (scrollY/innerHeight - fsc)*.05;
+    gl.uniform2f(U('r'), cv.width, cv.height);
+    gl.uniform1f(U('t'), reduce ? 0 : (now - t0)/1000);
+    gl.uniform2f(U('m'), mx, my);
+    gl.uniform1f(U('sc'), fsc);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    drawGlass(now);
+    upTrail(gl, trTex1);
+    requestAnimationFrame(draw);
+  })(t0);
+})();
+</script>
+</body>
+</html>
