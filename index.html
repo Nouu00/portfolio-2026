@@ -7,7 +7,13 @@
 <meta name="description" content="楊芷翎 Zhi — UI/UX 與視覺設計作品集">
 <meta property="og:title" content="楊芷翎 Zhi — UI/UX 與視覺設計作品集">
 <meta property="og:description" content="楊芷翎 Zhi — UI/UX 與視覺設計作品集">
-<meta property="og:image" content="og.png">
+<meta property="og:image" content="https://nouu00.github.io/portfolio-2026/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://nouu00.github.io/portfolio-2026/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nouu00.github.io/portfolio-2026/og.jpg">
 <meta name="theme-color" content="#efeff1">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="icon-32.png" sizes="32x32">
@@ -132,7 +138,7 @@ section.block{padding:18vh var(--pad) 8vh}
 
 /* ---------- 關於 ---------- */
 .about{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2vw,32px)}
-.about .photo{grid-column:1/span 4}
+.about .photo{grid-column:1/span 3;max-width:300px}
 .about .photo .media{aspect-ratio:776/950}
 .about .cv{grid-column:6/span 7;display:grid;grid-template-columns:1fr 1fr;gap:9vh clamp(24px,3vw,56px);align-content:start}
 .cv h3{font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--blue);margin-bottom:18px}
@@ -158,7 +164,7 @@ footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--
   .hero-id small{margin-top:12px}
   .grid{row-gap:10vh}
   .w1,.w2,.w3,.w4,.w5,.w6{grid-column:1/-1;margin-top:0}
-  .about .photo{grid-column:1/span 9;margin-bottom:8vh}
+  .about .photo{grid-column:1/-1;width:58%;max-width:240px;margin-bottom:8vh}
   .about .cv{grid-column:1/-1;grid-template-columns:1fr;gap:6vh}
 }
 @media (prefers-reduced-motion:reduce){

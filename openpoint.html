@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OPENPOINT Redesign — 楊芷翎</title>
 <meta name="theme-color" content="#efeff1">
+<meta property="og:title" content="OPENPOINT Redesign — 楊芷翎">
+<meta property="og:image" content="https://nouu00.github.io/portfolio-2026/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +78,7 @@ nav a.on{color:var(--blue)}
 .meta div{border-top:1px solid var(--line);padding-top:14px}
 .meta dt{font-size:14px;color:var(--mute);margin-bottom:8px}
 .meta dd{font-size:16px;line-height:1.6}
-.cover{margin:0 var(--pad);height:min(86vh,62vw);overflow:hidden;position:relative;clip-path:inset(12% 8% 12% 8%);transition:clip-path 1.8s var(--ease)}
+.cover{margin:0 auto;width:min(calc(100% - var(--pad)*2),1180px);height:min(68vh,46vw);overflow:hidden;position:relative;clip-path:inset(12% 8% 12% 8%);transition:clip-path 1.8s var(--ease)}
 .cover.in{clip-path:inset(0 0 0 0)}
 .cover img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;will-change:transform}
 .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2vw,32px);padding:14vh var(--pad) 4vh}
@@ -126,8 +131,11 @@ nav a.on{color:var(--blue)}
 .step .no{font-family:"Fraunces X",serif;font-style:italic;font-size:clamp(80px,12vw,220px);line-height:.8;color:var(--blue);letter-spacing:-.04em}
 .step h3{font-size:clamp(28px,2.8vw,48px);font-weight:500;letter-spacing:-.035em;line-height:1.15}
 .step .sb{margin:28px 0 0 calc(33.33% + clamp(8px,1.3vw,26px));font-size:17px;line-height:1.95;max-width:44em}
-.screen{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,5vw,96px);align-items:center;padding:12vh var(--pad) 0}
-.screen.r{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.screen{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,96px);align-items:center;padding:12vh var(--pad) 0;max-width:1180px;margin:0 auto}
+.screen .fig{max-width:440px;justify-self:end;width:100%}
+.screen.r .fig{justify-self:start}
+.screen.it .fig{max-width:560px}
+.screen.r{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
 .screen.r .fig{order:2}
 .fig{overflow:hidden;clip-path:inset(0 0 100% 0);transition:clip-path 1.6s var(--ease)}
 .fig.in{clip-path:inset(0 0 0 0)}
@@ -140,7 +148,7 @@ nav a.on{color:var(--blue)}
 .pain span{display:block;font-size:14px;color:var(--mute);margin-bottom:6px}
 .pain em{font-style:normal;font-size:16px;line-height:1.7}
 .wide{padding:12vh var(--pad) 0}
-.wide .fig{max-width:1240px;margin:0 auto}
+.wide .fig{max-width:900px;margin:0 auto}
 .tasks{margin-top:36px}
 .task{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
 .task h3{font-size:18px;font-weight:500}
@@ -175,7 +183,8 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
   .cards,.big3,.tri,.res{grid-template-columns:minmax(0,1fr)}
   .brow{grid-template-columns:minmax(0,1fr) 3.5em;gap:8px 14px}
   .brow .tr{grid-column:1/-1;grid-row:2}
-  .cover{height:62vh}
+  .cover{height:48vh}
+  .screen .fig,.screen.r .fig{justify-self:center;max-width:340px}
 }
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition-duration:.01s!important}}
 
@@ -340,11 +349,11 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
     </div>
   </div>
 </section>
-<section class="screen">
+<section class="screen it">
   <div class="fig"><img src="images/op-payment-iter.jpg" alt="付款碼迭代"></div>
   <div class="rv"><h4>迭代</h4><h3>付款碼</h3><p>切換區塊的標題和內文層級太接近，不夠明顯。</p><div class="pain"><span>調整</span><em>強化資訊層級與視覺區隔；兌換券整合進付款碼頁，直接完成兌換</em></div></div>
 </section>
-<section class="screen r">
+<section class="screen r it">
   <div class="fig"><img src="images/op-brand-iter.jpg" alt="品牌館迭代"></div>
   <div class="rv"><h4>迭代</h4><h3>品牌館</h3><p>使用者更傾向用「商品需求」來瀏覽，而不是先認識品牌。</p><div class="pain"><span>調整</span><em>新增以商品種類為主的分類，幫助瀏覽與探索</em></div></div>
 </section>
