@@ -76,10 +76,10 @@ i,em{font-style:normal}
 .ctitle .w > span{display:inline-block;transform:translateY(105%);transition:transform 1.4s var(--ease)}
 .ready .ctitle .w > span{transform:none}
 .tag{max-width:30em;margin-top:34px;font-size:clamp(19px,1.8vw,28px);line-height:1.5;color:var(--ink);letter-spacing:-.01em}
-.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 clamp(16px,2vw,32px);margin-top:9vh}
+.meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(16px,2vw,32px);margin-top:9vh}
 .meta div{border-top:1px solid var(--line);padding-top:14px}
-.meta dt{font-size:14px;color:var(--mute);margin-bottom:8px}
-.meta dd{font-size:16px;line-height:1.6}
+.meta dt{font-size:15px;color:var(--mute);margin-bottom:8px}
+.meta dd{font-size:18px;line-height:1.6}
 .cover{margin:0 auto;width:min(calc(100% - var(--pad)*2),1180px);height:min(68vh,46vw);overflow:hidden;position:relative;clip-path:inset(12% 8% 12% 8%);transition:clip-path 1.8s var(--ease)}
 .cover.in{clip-path:inset(0 0 0 0)}
 .cover img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;will-change:transform}
@@ -87,26 +87,26 @@ i,em{font-style:normal}
 .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2vw,32px);padding:14vh var(--pad) 4vh}
 .stat b{display:block;font-size:clamp(44px,5.4vw,96px);font-weight:300;letter-spacing:-.05em;line-height:1}
 .stat b small{font-size:.32em;color:var(--mute);margin-left:.2em;letter-spacing:0}
-.stat span{display:block;margin-top:12px;font-size:15px;color:var(--mute)}
+.stat > span{display:block;margin-top:14px;font-size:17px;color:var(--mute)}
 .sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,80px);padding:16vh var(--pad) 0}
 .sec > h2{position:sticky;top:18vh;align-self:start;font-size:clamp(28px,2.6vw,44px);font-weight:500;letter-spacing:-.035em;line-height:1.1}
-.sec > h2 i{display:block;font-style:normal;font-size:15px;color:var(--blue);letter-spacing:0;margin-bottom:14px}
-.body{font-size:17px;line-height:1.95;max-width:44em}
+.sec > h2 i{display:none;font-style:normal;font-size:15px;color:var(--blue);letter-spacing:0;margin-bottom:14px}
+.body{font-size:19px;line-height:1.95;max-width:44em}
 .body p + p{margin-top:1.1em}
 .hl{color:var(--blue)}
 .lead{font-size:clamp(22px,2vw,32px);line-height:1.6;letter-spacing:-.01em}
 .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin-top:48px}
 .card{padding:26px 26px 30px;background:rgba(255,255,255,.42);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);transition:transform .7s var(--ease),background .5s}
 .card:hover{transform:translateY(-4px);background:rgba(255,255,255,.62)}
-.card h4{font-size:14px;color:var(--blue);font-weight:500;margin-bottom:14px}
+.card h4{display:none;font-size:14px;color:var(--blue);font-weight:500;margin-bottom:14px}
 .card h3{font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1.35}
-.card p{margin-top:10px;font-size:15px;line-height:1.7;color:#55565f}
+.card p{margin-top:10px;font-size:17px;line-height:1.7;color:#55565f}
 .list{list-style:none;counter-reset:n}
-.list li{counter-increment:n;display:grid;grid-template-columns:3em 1fr;padding:18px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.75}
+.list li{counter-increment:n;display:grid;grid-template-columns:3em 1fr;padding:18px 0;border-top:1px solid var(--line);font-size:19px;line-height:1.75}
 .list li:before{content:counter(n,decimal-leading-zero);font-weight:400;color:var(--blue)}
 .sub{font-size:20px;font-weight:500;letter-spacing:-.02em;margin:56px 0 18px}
 .bars{margin-top:28px}
-.brow{display:grid;grid-template-columns:minmax(0,15em) 1fr 4.5em;align-items:center;gap:18px;padding:12px 0;font-size:16px}
+.brow{display:grid;grid-template-columns:minmax(0,15em) 1fr 4.5em;align-items:center;gap:18px;padding:12px 0;font-size:18px}
 .brow .tr{height:10px;background:rgba(33,80,232,.08);position:relative;overflow:hidden}
 .brow .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--blue);width:0;transition:width 1.6s var(--ease)}
 .in .brow .tr i{width:var(--w)}
@@ -118,22 +118,22 @@ i,em{font-style:normal}
 .finds{margin-top:30px}
 .finds div{padding:20px 0;border-top:1px solid var(--line)}
 .finds h3{font-size:19px;font-weight:500;margin-bottom:6px}
-.finds p{font-size:16px;line-height:1.8;color:#4a4b55}
+.finds p{font-size:18px;line-height:1.8;color:#4a4b55}
 .quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px);padding:16vh var(--pad) 0}
 .quote{font-size:clamp(22px,2.2vw,34px);line-height:1.5;letter-spacing:-.015em}
 .quote:before{content:"“";display:block;font-size:2.4em;line-height:.6;color:var(--blue);margin-bottom:.15em}
 .quote span{display:block;margin-top:18px;font-size:14px;color:var(--mute);letter-spacing:.06em}
 .hmw{padding:22vh var(--pad) 8vh;text-align:center}
-.hmw small{display:block;font-size:15px;color:var(--blue);letter-spacing:.14em;margin-bottom:28px}
+.hmw small{display:none;font-size:15px;color:var(--blue);letter-spacing:.14em;margin-bottom:28px}
 .hmw p{max-width:22em;margin:0 auto;font-size:clamp(28px,3.6vw,60px);line-height:1.3;letter-spacing:-.035em;font-weight:500}
 .hmw p .ws{display:inline-block;opacity:.12;transition:opacity .6s}
 .hmw p .ws.on{opacity:1}
 .tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);padding:4vh var(--pad) 0}
 .step{padding:16vh var(--pad) 0}
 .step .sh{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,80px);align-items:end}
-.step .no{font-weight:400;font-size:clamp(80px,12vw,220px);line-height:.8;color:var(--blue);letter-spacing:-.04em}
+.step .no{font-weight:400;font-size:clamp(44px,4.6vw,80px);line-height:.9;color:var(--blue);letter-spacing:-.04em}
 .step h3{font-size:clamp(28px,2.8vw,48px);font-weight:500;letter-spacing:-.035em;line-height:1.15}
-.step .sb{margin:28px 0 0 calc(33.33% + clamp(8px,1.3vw,26px));font-size:17px;line-height:1.95;max-width:44em}
+.step .sb{margin:28px 0 0 calc(33.33% + clamp(8px,1.3vw,26px));font-size:19px;line-height:1.95;max-width:44em}
 .screen{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,96px);align-items:center;padding:12vh var(--pad) 0;max-width:1180px;margin:0 auto}
 .screen .fig{max-width:440px;justify-self:end;width:100%}
 .screen.r .fig{justify-self:start}
@@ -144,18 +144,18 @@ i,em{font-style:normal}
 .fig.in{clip-path:inset(0 0 0 0)}
 .fig img{width:100%;transform:scale(1.12);filter:blur(16px);transition:transform 2s var(--ease),filter 1.6s var(--ease)}
 .fig.in img{transform:none;filter:none}
-.screen h4{font-size:14px;color:var(--blue);font-weight:500;margin-bottom:12px}
+.screen h4{display:none;font-size:14px;color:var(--blue);font-weight:500;margin-bottom:12px}
 .screen h3{font-size:clamp(24px,2.2vw,36px);font-weight:500;letter-spacing:-.03em;line-height:1.25}
-.screen p{margin-top:14px;font-size:17px;line-height:1.9;color:#3d3e48}
+.screen p{margin-top:14px;font-size:19px;line-height:1.9;color:#3d3e48}
 .pain{margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
 .pain span{display:block;font-size:14px;color:var(--mute);margin-bottom:6px}
-.pain em{font-style:normal;font-size:16px;line-height:1.7}
+.pain em{font-style:normal;font-size:18px;line-height:1.7}
 .wide{padding:12vh var(--pad) 0}
 .wide .fig{max-width:900px;margin:0 auto}
 .tasks{margin-top:36px}
 .task{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
 .task h3{font-size:18px;font-weight:500}
-.task p{margin-top:6px;font-size:16px;line-height:1.75;color:#4a4b55}
+.task p{margin-top:6px;font-size:18px;line-height:1.75;color:#4a4b55}
 .badge{align-self:start;font-size:14px;padding:6px 12px;border:1px solid var(--blue);color:var(--blue);white-space:nowrap}
 .badge.ok{background:var(--blue);color:#fff}
 .res{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin-top:40px}
@@ -165,7 +165,7 @@ i,em{font-style:normal}
 .refl{margin-top:8px}
 .refl div{padding:28px 0;border-top:1px solid var(--line)}
 .refl h3{font-size:clamp(22px,2vw,30px);font-weight:500;letter-spacing:-.025em}
-.refl p{margin-top:10px;font-size:17px;line-height:1.9;color:#3d3e48}
+.refl p{margin-top:10px;font-size:19px;line-height:1.9;color:#3d3e48}
 .next{display:block;margin:22vh var(--pad) 0;padding:6vh 0 8vh;border-top:1px solid var(--line)}
 .next small{display:block;font-size:15px;color:var(--blue);margin-bottom:18px}
 .next b{display:block;font-size:clamp(48px,9vw,170px);font-weight:500;letter-spacing:-.055em;line-height:.9;transition:transform 1s var(--ease)}
@@ -184,8 +184,8 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .flow figure{margin:0}
 .flow.f3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1000px}
 @media(max-width:760px){.flow.f3{grid-template-columns:1fr;max-width:300px}}
-.flow figcaption{margin-top:16px;font-size:15px;line-height:1.6;color:var(--mute)}
-.flow figcaption b{display:block;color:var(--ink);font-weight:500;font-size:17px;margin-bottom:4px}
+.flow figcaption{margin-top:16px;font-size:17px;line-height:1.6;color:var(--mute)}
+.flow figcaption b{display:block;color:var(--ink);font-weight:500;font-size:19px;margin-bottom:4px}
 .flow figcaption b i{font-style:normal;color:var(--blue);margin-right:8px}
 @media (max-width:860px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.screen .fig.ph,.screen.r .fig.ph{max-width:260px}}
 
@@ -228,8 +228,8 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
 .flow4 figure{margin:0;width:100%;max-width:250px}
 .flow4 .dev{--w:100%;transition:transform .8s var(--ease)}
 .flow4 figure.on .dev{transform:translateY(-14px)}
-.flow4 figcaption{margin-top:18px;font-size:15px;line-height:1.6;color:var(--mute);transition:color .5s}
-.flow4 figcaption b{display:block;color:var(--ink);font-weight:500;font-size:17px;margin-bottom:4px}
+.flow4 figcaption{margin-top:18px;font-size:17px;line-height:1.6;color:var(--mute);transition:color .5s}
+.flow4 figcaption b{display:block;color:var(--ink);font-weight:500;font-size:19px;margin-bottom:4px}
 .flow4 figcaption b i{color:var(--blue);margin-right:8px}
 .flow4 figure.on figcaption b{color:var(--blue)}
 .flow4 .bar4{grid-column:1/-1;width:100%;height:2px;background:rgba(33,80,232,.12);position:relative;margin-top:6px}
@@ -279,7 +279,6 @@ footer{display:flex;justify-content:space-between;padding:10vh var(--pad) var(--
   <h1 class="ctitle"><span class="w"><span>丟丟</span></span> <span class="w"><span>TossTalk</span></span></h1>
   <p class="tag rv">垃圾怎麼丟，拍一下、用你的語言、一步一步告訴你。</p>
   <dl class="meta rv">
-    <div><dt>項目性質</dt><dd>2026 臺北秋季程式設計節｜城市通微服務大黑客松（決賽入圍）</dd></div>
     <div><dt>執行時間</dt><dd>2026.11.7–11.8</dd></div>
     <div><dt>團隊</dt><dd>4 人</dd></div>
     <div><dt>我的角色</dt><dd>介面設計、使用流程設計</dd></div>
