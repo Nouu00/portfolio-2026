@@ -142,12 +142,18 @@ section.block{padding:18vh var(--pad) 8vh}
 .about .photo{grid-column:1/span 3;max-width:300px}
 .about .photo .media{aspect-ratio:776/950}
 .about .cv{grid-column:6/span 7;display:grid;grid-template-columns:1fr 1fr;gap:9vh clamp(24px,3vw,56px);align-content:start}
-.cv h3{font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--blue);margin-bottom:18px}
+.cv h3{font-size:15px;font-weight:500;letter-spacing:.04em;color:var(--blue);margin-bottom:18px}
 .cv ul{list-style:none}
 .cv li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px;
   opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .cv li span:last-child{color:var(--mute);text-align:right}
 .cv .in li{opacity:1;transform:none}
+.cv .wide{grid-column:1/-1}
+.cv ul.tl li{display:grid;grid-template-columns:7.5em 1fr;justify-content:start;gap:16px;padding:16px 0}
+.cv ul.tl .y{color:var(--mute);text-align:left!important;font-variant-numeric:tabular-nums}
+.cv ul.tl .t{color:var(--ink)!important;text-align:left!important;line-height:1.6}
+.cv ul.tl em{display:block;font-style:normal;color:var(--mute);margin-top:4px}
+
 
 /* ---------- 聯絡 ---------- */
 .contact{padding:20vh var(--pad) 6vh}
@@ -281,24 +287,30 @@ footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--
     <div class="about">
       <div class="photo work reveal"><div class="media"><img src="images/me-full.jpg" alt="楊芷翎的照片" loading="lazy"></div></div>
       <div class="cv">
-        <div class="reveal"><h3>EXPERIENCE</h3><ul>
-          <li><span>OpenHCI 視覺行銷部</span><span>2026</span></li>
-          <li><span>Jubo 智齡科技 UX 實習</span><span>2023–24</span></li>
-          <li><span>中華電信 蹲點「與泥共好」</span><span>2024</span></li>
-          <li><span>BUILDMODE Hackathon</span><span>2026</span></li>
+        <div class="reveal wide"><h3>實務經驗</h3><ul class="tl">
+          <li><span class="y">2026</span><span class="t">第十六屆 OpenHCI 視覺行銷部<em>主視覺與標準字設計、網站視覺設計、社群 Banner 設計、動態影像製作、紀念品設計</em></span></li>
+          <li><span class="y">2023–2024</span><span class="t">Jubo 智齡科技 UX 實習<em>Redesign 現有產品、製作產品 Flow、維護 Design System、製作產品影片</em></span></li>
+          <li><span class="y">2024</span><span class="t">中華電信 蹲點創新設計「與泥共好」產學合作<em>田野調查、共創討論、使用者研究、服務設計</em></span></li>
         </ul></div>
-        <div class="reveal"><h3>EDUCATION</h3><ul>
-          <li><span>政治大學 數位內容所</span><span>NOW</span></li>
-          <li><span>大同大學 媒體設計系</span><span>2022–25</span></li>
-          <li><span>復興商工 美術系</span><span>2017–20</span></li>
+        <div class="reveal"><h3>學歷</h3><ul class="tl">
+          <li><span class="y">Now</span><span class="t">國立政治大學 數位內容所</span></li>
+          <li><span class="y">2022–2025</span><span class="t">大同大學 媒體設計系－互動組</span></li>
+          <li><span class="y">2017–2020</span><span class="t">復興商工 美術系－專業組</span></li>
         </ul></div>
-        <div class="reveal"><h3>AWARDS</h3><ul>
+        <div class="reveal"><h3>課外活動</h3><ul class="tl">
+          <li><span class="y">2026</span><span class="t">BUILDMODE Hackathon</span></li>
+          <li><span class="y">2025</span><span class="t">畢籌會 總務組組長</span></li>
+          <li><span class="y">2024</span><span class="t">UXTW 使用者經驗實戰營<br>DFC Singapore 國際交流工作坊</span></li>
+          <li><span class="y">2023</span><span class="t">UXTW 使用者經驗基石課程<br>系學會美宣組組長</span></li>
+          <li><span class="y">2022</span><span class="t">劍道社 美宣股長</span></li>
+        </ul></div>
+        <div class="reveal"><h3>獲獎</h3><ul>
           <li><span>華燦獎 三等獎</span><span>2024</span></li>
           <li><span>金點新秀 贊助特別獎</span><span>2025</span></li>
           <li><span>放視大賞 入圍</span><span>2025</span></li>
           <li><span>城市通黑客松 決賽入圍</span><span>2026</span></li>
         </ul></div>
-        <div class="reveal"><h3>SKILLS</h3><ul>
+        <div class="reveal"><h3>技能</h3><ul>
           <li><span>UI / UX</span><span>Figma · FigJam · Miro</span></li>
           <li><span>視覺設計</span><span>Illustrator · Photoshop · InDesign</span></li>
           <li><span>3D 建模</span><span>Blender · Maya</span></li>
