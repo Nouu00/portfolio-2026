@@ -63,9 +63,9 @@ body{background:#E1E5E3;color:#353239;font-family:"Noto Serif TC",serif;overflow
 .big em{font-style:normal;color:#68B874}
 .det{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(16px,3vw,48px);margin-top:48px;align-items:center}
 .zoom{overflow:hidden;aspect-ratio:4/3;position:relative;background:#B4AFB6}
-.zoom img{position:absolute;width:260%;max-width:none;left:-40%;top:-60%;transition:transform 6s ease}
+.zoom img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
 .zoom:hover img{transform:scale(1.08)}
-.zoom.b img{left:-120%;top:-150%}
+
 .spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:40px;font-family:"Noto Sans TC",sans-serif}
 .spec div{padding:22px 0;border-bottom:1px solid rgba(53,50,57,.2)}
 .spec dt{font-size:13px;opacity:.55;margin-bottom:6px}
@@ -105,7 +105,7 @@ footer{font-family:"Noto Sans TC",sans-serif}
 <div class="grain" aria-hidden="true"></div>
 <section class="phero" id="top">
   <h1 class="vt"><span>生生死死，</span><span>生生慢</span></h1>
-  <img class="pframe" src="images/po-full.jpg" alt="生生死死，生生慢 主視覺海報">
+  <img class="pframe" src="images/po-clean.jpg" alt="生生死死，生生慢 主視覺海報">
   <p class="side"><small>EXHIBITION KEY VISUAL</small>國立台東大學美產系 114 級班展主視覺——以蘋果象徵生命，提醒珍惜當下。</p>
 </section>
 
@@ -113,8 +113,8 @@ footer{font-family:"Noto Sans TC",sans-serif}
   <h2 class="h2 rv">概念<small>CONCEPT</small></h2>
   <p class="big rv">以<em>蘋果</em>象徵生命，用流動紋理、墨跡與朦朧空間感呈現生命的脆弱；<em>綠色色塊</em>象徵生命力與希望，提醒珍惜當下。</p>
   <div class="det">
-    <div class="zoom rv"><img src="images/po-full.jpg" alt="海報細節：流動紋理"></div>
-    <div class="zoom b rv"><img src="images/po-full.jpg" alt="海報細節：墨跡暈染"></div>
+    <div class="zoom rv"><img src="images/po-det-a.jpg" alt="海報細節：蘋果與綠色色塊"></div>
+    <div class="zoom b rv"><img src="images/po-det-b.jpg" alt="海報細節：墨跡暈染"></div>
   </div>
 </section>
 
