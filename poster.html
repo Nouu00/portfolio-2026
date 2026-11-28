@@ -61,6 +61,7 @@ body{background:#E1E5E3;color:#353239;font-family:"Noto Serif TC",serif;overflow
 .h2 small:before{content:"|";margin-right:14px}
 .big{font-size:clamp(22px,2.2vw,34px);line-height:1.9;margin-top:36px;max-width:28em}
 .big em{font-style:normal;color:#68B874}
+.pmk{margin-top:48px}.pmk figure{margin:0 0 clamp(10px,1.2vw,20px)}.pmk img{width:100%;display:block}.pmk2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.2vw,20px)}@media(max-width:760px){.pmk2{grid-template-columns:1fr}}
 .det{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(16px,3vw,48px);margin-top:48px;align-items:center}
 .zoom{overflow:hidden;aspect-ratio:4/3;position:relative;background:#B4AFB6}
 .zoom img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
@@ -112,9 +113,9 @@ footer{font-family:"Noto Sans TC",sans-serif}
 <section class="blk">
   <h2 class="h2 rv">概念<small>CONCEPT</small></h2>
   <p class="big rv">以<em>蘋果</em>象徵生命，用流動紋理、墨跡與朦朧空間感呈現生命的脆弱；<em>綠色色塊</em>象徵生命力與希望，提醒珍惜當下。</p>
-  <div class="det">
-    <div class="zoom rv"><img src="images/po-det-a.jpg" alt="海報細節：蘋果與綠色色塊"></div>
-    <div class="zoom b rv"><img src="images/po-det-b.jpg" alt="海報細節：墨跡暈染"></div>
+  <div class="pmk">
+    <figure class="rv"><img src="images/po-mk-frame.jpg" alt="海報裱框掛牆展示" loading="lazy"></figure>
+    <div class="pmk2"><figure class="rv"><img src="images/po-mk-lean.jpg" alt="海報靠牆展示" loading="lazy"></figure><figure class="rv"><img src="images/po-mk-street.jpg" alt="海報張貼展示" loading="lazy"></figure></div>
   </div>
 </section>
 
