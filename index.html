@@ -80,6 +80,24 @@ nav a.on{color:var(--blue)}
 .hero-id h1{font-weight:500;font-size:clamp(34px,4.6vw,72px);letter-spacing:-.03em;line-height:1.02}
 .hero-id p{margin-top:.35em;font-size:clamp(20px,2.2vw,34px);color:var(--mute);letter-spacing:-.03em;line-height:1.1;font-weight:400}
 .hero-id small{display:block;margin-top:18px;font-size:15px;color:var(--mute)}
+.hero-id{right:auto;max-width:min(46vw,760px)}
+.hero-id h1{font-size:clamp(30px,3.2vw,52px)}
+.hero-id p{font-size:clamp(20px,1.9vw,30px);line-height:1.3;color:var(--ink)}
+.hero-id small{font-size:17px;margin-top:20px}
+.hero-id .cta{display:block;margin-top:26px}
+.hero-id .cta > span{display:flex;gap:12px;flex-wrap:wrap}
+.hero-id .cta a{display:inline-flex;align-items:center;height:46px;padding:0 22px;font-size:16px;border:1px solid var(--ink);transition:background .3s,color .3s}
+.hero-id .cta a.b1{background:var(--ink);color:#fff}
+.hero-id .cta a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.feat{position:absolute;right:var(--pad);bottom:var(--pad);width:min(46vw,780px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1vw,16px);z-index:4;opacity:0;transform:translateY(24px);transition:opacity 1.2s var(--ease) .5s,transform 1.2s var(--ease) .5s}
+.ready .feat{opacity:1;transform:none}
+.feat a{display:block}
+.feat .im{aspect-ratio:4/3;overflow:hidden;background:#e9e9ee}
+.feat img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.feat a:hover img{transform:scale(1.05)}
+.feat b{display:block;margin-top:12px;font-size:17px;font-weight:500;letter-spacing:-.01em}
+.feat span{display:block;margin-top:2px;font-size:15px;color:var(--mute)}
+@media (max-width:900px){.hero{height:auto;min-height:0;padding:300px var(--pad) var(--pad)}.hero-id{position:relative;left:0;bottom:0;max-width:none}.feat{position:relative;right:0;bottom:0;width:auto;margin-top:36px;grid-template-columns:repeat(3,64vw);overflow-x:auto;scroll-snap-type:x mandatory}.feat a{scroll-snap-align:start}}
 .hero-id small a{color:var(--blue);background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .6s var(--ease)}
 .hero-id small a:hover{background-size:100% 1px}
 .ln{display:block;overflow:hidden}
@@ -223,7 +241,7 @@ footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--
 .pend .pl{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .pend .pl line{stroke:rgba(26,27,34,.38);stroke-width:1}
 .pend .pl circle{fill:none;stroke:rgba(33,80,232,.5);stroke-width:1}
-.pend .pt{position:absolute;left:0;right:0;height:1.3em;font-size:clamp(40px,7.4vw,128px);letter-spacing:-.045em;line-height:1.3;opacity:0;transition:opacity 1.2s var(--ease)}
+.pend .pt{position:absolute;left:0;right:0;height:1.3em;font-size:clamp(36px,5.6vw,100px);letter-spacing:-.045em;line-height:1.3;opacity:0;transition:opacity 1.2s var(--ease)}
 .ready .pend .pt{opacity:1}
 .pend .ptl{position:absolute;inset:0;text-align:center;white-space:nowrap;will-change:clip-path}
 .pend .ptl.q{color:#a9a8b4;font-weight:400}
@@ -274,8 +292,14 @@ footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--
     </div>
     <div class="hero-id">
       <h1 class="ln"><span>嗨，我是楊芷翎</span></h1>
-      <p class="ln"><span>用研究找出問題，再用視覺把答案說清楚。</span></p>
-      <small class="ln"><span>政大數位內容所 · 1 年 UX 實習 · 正在尋找實習機會 · <a href="mailto:Loucked66@gmail.com">Loucked66@gmail.com</a></span></small>
+      <p class="ln"><span>媒體設計出身的 UX 設計師，<br>用研究找出問題，再用視覺把答案說清楚。</span></p>
+      <small class="ln"><span>政大數位內容碩士 · Jubo 智齡科技 UX 實習 1 年 · OpenHCI '26 主視覺設計</span></small>
+      <div class="cta ln"><span><a class="b1" href="mailto:Loucked66@gmail.com">Email 聯絡</a><a class="b2" href="#about">經歷與履歷</a></span></div>
+    </div>
+    <div class="feat">
+      <a href="openpoint.html"><div class="im"><img src="images/mk-op.jpg" alt="OPENPOINT Redesign"></div><b>OPENPOINT Redesign</b><span>UX Research · UI Design</span></a>
+      <a href="tosstalk.html"><div class="im"><img src="images/mk-tt.jpg" alt="丟丟 TossTalk"></div><b>丟丟 TossTalk</b><span>UI Design · 黑客松</span></a>
+      <a href="aidentity.html"><div class="im"><img src="images/aid-motion.jpg" alt="(AI)dentity"></div><b>(AI)dentity</b><span>Visual Identity · Motion</span></a>
     </div>
   </section>
 
@@ -478,7 +502,7 @@ footer{display:flex;justify-content:space-between;padding:12vh var(--pad) var(--
     function set(el,i){ var it=seq[i%seq.length]; el.className='ptl '+it[0]; el.textContent=it[1]; }
     function frame(now){
       var W=hero.clientWidth, H=hero.clientHeight, mob=W<=760;
-      var span=Math.min(W*(mob?.46:.4),680), L=span/Math.sin(Amp), by=H*(mob?.36:.44), ax=W/2, ay=by-L;
+      var span=Math.min(W*(mob?.46:.34),620), L=span/Math.sin(Amp), by=(mob?Math.min(H*.22,170):H*.30), ax=W/2, ay=by-L;
       var t=now-T0, k=Math.floor(t/Th), f=(t%Th)/Th;
       if(red){ k=Math.floor(t/3200); f=1; }
       var th=Amp*Math.cos(Math.PI*(k+f)), bx=ax+L*Math.sin(th), byy=ay+L*Math.cos(th);
