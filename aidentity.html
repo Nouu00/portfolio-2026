@@ -163,6 +163,91 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
   .els,.anno,.vars,.fonts{grid-template-columns:minmax(0,1fr)}
   .sw{grid-template-columns:minmax(0,1fr)}.sw div{height:26vh}
 }
+/* ===== KV theme (light, from 主視覺) ===== */
+body{background:#F1F1F4;color:#14141a}
+::selection{background:#A6FF03;color:#000}
+.bar{background:#0009FF}
+.g{color:#0009FF}.b{color:#0009FF}
+header{mix-blend-mode:normal;color:#14141a}
+.mark i{background:#0009FF}
+.pixbg{background-image:radial-gradient(circle,rgba(20,20,40,.09) 2.2px,transparent 2.6px);background-size:34px 34px}
+.pixbg:after{content:"";position:absolute;inset:0;opacity:.22;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .55  0 0 0 -2.4 1.25'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* hero = key visual */
+.vhero{height:auto;min-height:0;background:#F1F1F4;aspect-ratio:16/9;max-height:100vh;width:100%}
+.vhero:after{display:none}
+.vhero .kv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vhero .hop{position:absolute;border:3px solid #0009FF;pointer-events:none;transition:left .7s cubic-bezier(.7,0,.2,1),top .7s cubic-bezier(.7,0,.2,1),width .7s cubic-bezier(.7,0,.2,1),height .7s cubic-bezier(.7,0,.2,1)}
+.vhero .hop b{position:absolute;left:-3px;bottom:100%;background:#0009FF;color:#fff;font:500 clamp(11px,1vw,15px)/1 "Pixelify Sans",monospace;padding:6px 8px;white-space:nowrap}
+/* section heading: blue tag + title */
+.h2{flex-direction:column;align-items:flex-start;gap:16px;border-bottom:0;padding-bottom:0;font-size:clamp(30px,3vw,48px);letter-spacing:-.02em}
+.h2 small{order:-1;opacity:1;font:500 15px/1 "Pixelify Sans",monospace;color:#fff;background:#0009FF;padding:7px 10px 6px;letter-spacing:.02em}
+.h2 small:before{content:"??  ";margin:0;opacity:1;white-space:pre}
+section.pad{position:relative}
+.lead{color:#14141a}
+.body17{opacity:1;color:#3b3b46;font-size:18px}
+.meta dt{opacity:1;color:#8b8b97}
+.split .pic{background:#F1F1F4}
+.stats{border-color:rgba(0,9,255,.25)}
+.stats div{border-color:rgba(0,9,255,.25)}
+.stats b{color:#0009FF}
+.stats span{opacity:1;color:#55556a;font-size:17px}
+/* framed images: AI selection box */
+.cf,.logo,.vars figure .reveal-img,.duo figure,.mocks figure,.browser,.app .reveal-img{position:relative;border:3px solid #0009FF;background:#fff;overflow:visible}
+.cf:before,.logo:before,.vars figure .reveal-img:before,.duo figure:before,.mocks figure:before,.browser:before,.app .reveal-img:before{content:"";position:absolute;left:-3px;bottom:100%;width:46px;height:30px;background:url(images/aid-frame.svg) center/cover no-repeat;z-index:2}
+.mocks figure,.duo figure{margin-top:30px}
+.app .reveal-img{clip-path:none}
+.app .reveal-img:not(.in) img{opacity:0}
+.hscroll{padding-top:34px}
+.browser{background:#fff}
+.browser .bbar{border-color:rgba(0,9,255,.25);color:#55556a;background:#fff}
+.browser .bbar i{background:#d5d5dd}
+.logo{background:#fff}
+.vars figure{background:none;border:0;padding:0}
+.vars figure .reveal-img{padding:clamp(16px,3vw,40px)}
+figcaption{opacity:1;color:#6b6b78;font-size:16px}
+/* elements */
+.el{border:3px solid #0009FF;background:rgba(255,255,255,.55);position:relative;margin-top:30px}
+.el:before{content:"";position:absolute;left:-3px;bottom:100%;width:46px;height:30px;background:url(images/aid-frame.svg) center/cover no-repeat}
+.el:hover{border-color:#0009FF;background:#fff}
+.el .art{height:220px}
+.el h3{font-family:"Noto Sans TC",sans-serif;font-weight:500;font-size:32px}
+.el p{opacity:1;color:#55556a;font-size:17px}
+.el .n{opacity:1;color:#0009FF;font:500 14px "Pixelify Sans",monospace}
+.cellA{width:62%;animation:wob 6s ease-in-out infinite}
+@keyframes wob{0%,100%{transform:rotate(-4deg) scale(.96)}50%{transform:rotate(5deg) scale(1.04)}}
+.scan{position:relative;width:180px;height:150px}
+.scan img.c{position:absolute;left:22px;top:18px;width:136px}
+.scan .bx{position:absolute;border:3px solid #0009FF;animation:bx 4.8s cubic-bezier(.7,0,.2,1) infinite}
+.scan .bx:before{content:"";position:absolute;left:-3px;bottom:100%;width:38px;height:25px;background:url(images/aid-frame.svg) center/cover}
+@keyframes bx{0%,100%{left:10px;top:30px;width:90px;height:90px}33%{left:70px;top:20px;width:100px;height:80px}66%{left:4px;top:8px;width:172px;height:136px}}
+.gl{font-family:"Times New Roman",serif;font-size:76px;color:#14141a;letter-spacing:-.03em}
+.gl:before{color:#A6FF03}
+.gl:after{color:#0009FF}
+.anno b{color:#14141a}
+.anno p{color:#3b3b46;font-size:17px}
+.sw div{border:0!important}
+.fonts{border-color:rgba(0,9,255,.25)}
+.fonts div span{opacity:1;color:#8b8b97;font-size:15px}
+.res div{border:3px solid #0009FF;background:rgba(255,255,255,.55)}
+.res b{color:#0009FF}
+.res span{opacity:1;color:#55556a;font-size:16px}
+.refl > div{border-color:rgba(0,9,255,.25)}
+.refl i{color:#0009FF}
+.refl p{opacity:1;color:#3b3b46}
+.btn{background:#0009FF;color:#fff}
+.next{border-color:rgba(0,9,255,.3)}
+.next small{color:#0009FF}
+.lap .lscr{background:#16161a}
+footer{opacity:1;color:#6b6b78}
+.navbtns button{border-color:#0009FF;color:#0009FF}
+/* lime pixel steps (like KV corners) */
+.px-steps{position:absolute;right:0;top:0;width:clamp(80px,10vw,160px);height:clamp(60px,7vw,110px);pointer-events:none;background:
+ linear-gradient(#A6FF03,#A6FF03) right top/100% 34% no-repeat,
+ linear-gradient(#A6FF03,#A6FF03) right top/62% 70% no-repeat,
+ linear-gradient(#A6FF03,#A6FF03) right top/26% 100% no-repeat}
+.px-steps.l{left:0;right:auto;transform:scaleX(-1)}
+@media (max-width:860px){.vhero{aspect-ratio:16/9}}
+
 
 </style>
 </head>
@@ -176,13 +261,8 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
 
 <div class="pixbg" aria-hidden="true"></div>
 <section class="vhero" id="top">
-  <img class="poster" src="images/aidentity-banner.jpg" alt="">
-  <video class="vid on" src="images/aidentity-site.mp4" poster="images/aidentity-site.jpg" autoplay muted loop playsinline aria-label="(AI)dentity 官網動畫"></video>
-  <div class="frame" aria-hidden="true"><span>identity 0.62</span></div>
-  <div class="ttl">
-    <div class="k mono g">OPEN HCI 2026 · 主視覺設計</div>
-    <h1 class="px"><span class="br">(AI)</span>dentity</h1>
-  </div>
+  <img class="kv" src="images/aid-kv.jpg" alt="(AI)dentity 主視覺：細胞、框選與 glitch 標準字">
+  <div class="hop" id="hop" aria-hidden="true"><b>??</b></div>
 </section>
 
 <section class="split">
@@ -198,7 +278,7 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
       <div style="grid-column:1/-1"><dt>我的角色</dt><dd>主視覺、標準字、動畫、社群 Banner、網站設計</dd></div>
     </dl>
   </div>
-  <div class="pic"><img data-par="8" src="images/aidentity-banner.jpg" alt="(AI)dentity 主視覺"></div>
+  <div class="pic"><img data-par="8" src="images/aidentity-banner.jpg" alt="(AI)dentity 主視覺延伸"></div>
 </section>
 
 <div class="stats obs">
@@ -208,13 +288,13 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
   <div><b class="px" data-count="5">0</b><span>人視覺團隊</span></div>
 </div>
 
-<section class="pad"><div class="wrapw">
+<section class="pad"><i class="px-steps" aria-hidden="true"></i><div class="wrapw">
   <h2 class="h2 rv">設計概念<small>Concept</small></h2>
   <p class="body17 rv">把「身份」看成持續被判讀與生成的過程，用三個元素組成整套視覺：</p>
   <div class="els">
-    <div class="el rv"><div class="art"><div class="cell"></div><div class="cell2"></div></div><div><div class="n mono">元素 01</div><h3 class="px">細胞</h3><p>不斷分裂、增生的身份</p></div></div>
-    <div class="el rv"><div class="art"><div class="sel"><i></i></div></div><div><div class="n mono">元素 02</div><h3 class="px">框選</h3><p>AI 辨識與判讀的視角</p></div></div>
-    <div class="el rv"><div class="art"><span class="gl px" data-t="Glitch">Glitch</span></div><div><div class="n mono">元素 03</div><h3 class="px">Glitch</h3><p>辨識失準、誤判的瞬間</p></div></div>
+    <div class="el rv"><div class="art"><img class="cellA" src="images/aid-cell-a.svg" alt=""></div><div><div class="n mono">元素 01</div><h3 class="px">細胞</h3><p>不斷分裂、增生的身份</p></div></div>
+    <div class="el rv"><div class="art"><div class="scan"><img class="c" src="images/aid-cell-b.svg" alt=""><i class="bx"></i></div></div><div><div class="n mono">元素 02</div><h3 class="px">框選</h3><p>AI 辨識與判讀的視角</p></div></div>
+    <div class="el rv"><div class="art"><span class="gl" data-t="(AI)dentity">(AI)dentity</span></div><div><div class="n mono">元素 03</div><h3 class="px">Glitch</h3><p>辨識失準、誤判的瞬間</p></div></div>
   </div>
 </div></section>
 
@@ -235,7 +315,7 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
 <section class="pad"><div class="wrapw">
   <h2 class="h2 rv">設計系統<small>System</small></h2>
   <div class="sw rv">
-    <div style="background:#000;border:1px solid rgba(255,255,255,.2)"><b>純黑</b><span class="mono">#000000</span></div>
+    <div style="background:#000;color:#fff"><b>純黑</b><span class="mono">#000000</span></div>
     <div style="background:#A5FF00;color:#000"><b>螢光綠</b><span class="mono">#A5FF00</span></div>
     <div style="background:#050DFF;color:#fff"><b>電光藍</b><span class="mono">#050DFF</span></div>
   </div>
@@ -290,7 +370,7 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
   </div>
 </div></section>
 
-<section class="pad"><div class="wrapw">
+<section class="pad"><i class="px-steps l" aria-hidden="true"></i><div class="wrapw">
   <h2 class="h2 rv">成果<small>Result</small></h2>
   <p class="lead rv" style="margin-top:24px;max-width:36em">一套從「身份」出發的視覺系統，從主視覺延伸到工作坊現場的每一個物件，並整理成規範，讓視覺團隊的夥伴能自己延伸。</p>
   <div class="res rv">
@@ -333,6 +413,10 @@ figcaption{margin-top:12px;font-size:14px;opacity:.6}
   });
 }
 
+
+(function(){var h=document.getElementById('hop');if(!h)return;var P=[[316,278,157,150,'identity 0.62'],[890,160,178,152,'??'],[1290,224,132,124,'cell 0.88'],[1053,375,158,147,'??'],[728,480,296,218,'human 0.41'],[1603,357,94,90,'??'],[1185,720,110,102,'AI 0.57'],[1363,503,359,431,'identity ??']],i=0;
+function go(){var p=P[i%P.length];h.style.left=(p[0]/19.2)+'%';h.style.top=(p[1]/10.8)+'%';h.style.width=(p[2]/19.2)+'%';h.style.height=(p[3]/10.8)+'%';h.firstChild.textContent=p[4];i++;}
+go();setInterval(go,2200);})();
 
 </script>
 </body>
