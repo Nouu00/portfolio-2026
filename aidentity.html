@@ -192,18 +192,18 @@ section.pad{position:relative}
 .stats b{color:#0009FF}
 .stats span{opacity:1;color:#55556a;font-size:17px}
 /* framed images: AI selection box */
-.cf,.logo,.vars figure .reveal-img,.duo figure,.mocks figure,.browser,.app .reveal-img{position:relative;border:3px solid #0009FF;background:#fff;overflow:visible}
-.cf:before,.logo:before,.vars figure .reveal-img:before,.duo figure:before,.mocks figure:before,.browser:before,.app .reveal-img:before{content:"";position:absolute;left:-3px;bottom:100%;width:46px;height:30px;background:url(images/aid-frame.svg) center/cover no-repeat;z-index:2}
-.mocks figure,.duo figure{margin-top:30px}
+.cf{position:relative}
+
+
 .app .reveal-img{clip-path:none}
 .app .reveal-img:not(.in) img{opacity:0}
-.hscroll{padding-top:34px}
+.hscroll{padding-top:0}.app .reveal-img{background:none}
 .browser{background:#fff}
 .browser .bbar{border-color:rgba(0,9,255,.25);color:#55556a;background:#fff}
 .browser .bbar i{background:#d5d5dd}
-.logo{background:#fff}
+.logo{background:none;border:0;padding:0;margin-top:56px}.logo img,.vars img{mix-blend-mode:multiply}.logo .reveal-img,.vars .reveal-img{clip-path:none}
 .vars figure{background:none;border:0;padding:0}
-.vars figure .reveal-img{padding:clamp(16px,3vw,40px)}
+.vars figure .reveal-img{padding:0;background:none}
 figcaption{opacity:1;color:#6b6b78;font-size:16px}
 /* elements */
 .el{border:3px solid #0009FF;background:rgba(255,255,255,.55);position:relative;margin-top:30px}
@@ -237,7 +237,7 @@ figcaption{opacity:1;color:#6b6b78;font-size:16px}
 .btn{background:#0009FF;color:#fff}
 .next{border-color:rgba(0,9,255,.3)}
 .next small{color:#0009FF}
-.lap .lscr{background:#16161a}
+.lapm{position:relative;margin-top:48px;aspect-ratio:2000/1250;overflow:hidden}.lapm img{position:absolute;inset:0;width:100%;height:100%}.lapm video{position:absolute;left:0;top:0;width:1036px;height:520px;transform-origin:0 0;object-fit:cover}
 footer{opacity:1;color:#6b6b78}
 .navbtns button{border-color:#0009FF;color:#0009FF}
 /* lime pixel steps (like KV corners) */
@@ -261,8 +261,7 @@ footer{opacity:1;color:#6b6b78}
 
 <div class="pixbg" aria-hidden="true"></div>
 <section class="vhero" id="top">
-  <img class="kv" src="images/aid-kv.jpg" alt="(AI)dentity 主視覺：細胞、框選與 glitch 標準字">
-  <div class="hop" id="hop" aria-hidden="true"><b>??</b></div>
+  <video class="kv" src="images/aid-motion.mp4" poster="images/aid-motion.jpg" autoplay muted loop playsinline aria-label="(AI)dentity 主視覺動畫"></video>
 </section>
 
 <section class="split">
@@ -329,7 +328,7 @@ footer{opacity:1;color:#6b6b78}
 <section class="pad"><div class="wrapw">
   <h2 class="h2 rv">動態影像<small>Motion</small></h2>
   <p class="body17 rv">把細胞增生與 glitch 錯位延伸成會變動的畫面，用在活動宣傳與官網開場。</p>
-  <div class="browser rv"><div class="bbar"><i></i><i></i><i></i><span>2026.openhci.com</span></div><video src="images/aidentity-site.mp4" poster="images/aidentity-site.jpg" autoplay muted loop playsinline aria-label="官網開場與捲動動畫"></video></div>
+  <div class="lapm rv"><img src="images/aid-laptop.jpg" alt=""><video src="images/aidentity-site.mp4" poster="images/aidentity-site.jpg" autoplay muted loop playsinline aria-label="官網開場與捲動動畫"></video></div>
 </div></section>
 
 <section class="pad"><div class="wrapw duo">
@@ -340,8 +339,7 @@ footer{opacity:1;color:#6b6b78}
   </div>
   <figure class="obs"><div class="reveal-img"><img src="images/aidentity-social.jpg" alt="社群 Banner"></div></figure>
 </div>
-<div class="wrapw"><div class="lap rv"><div class="lscr"><div class="lin"><img src="images/aidentity-strip.jpg" alt="官網整頁捲動"></div></div><div class="lbase"></div></div></div>
-<div class="wrapw"><div class="browser rv" style="margin-top:clamp(16px,2vw,28px)"><div class="bbar"><i></i><i></i><i></i><span>instagram.com/open.hci</span></div><video src="images/aidentity-ig.mp4" poster="images/aidentity-ig.jpg" autoplay muted loop playsinline aria-label="Instagram 版面"></video></div></div></section>
+</section>
 
 <section class="pad" style="padding-left:0;padding-right:0">
   <div style="padding:0 var(--pad)" class="wrapw"><h2 class="h2 rv">識別證、指引與印刷物<small>Applications</small></h2>
@@ -414,9 +412,13 @@ footer{opacity:1;color:#6b6b78}
 }
 
 
-(function(){var h=document.getElementById('hop');if(!h)return;var P=[[316,278,157,150,'identity 0.62'],[890,160,178,152,'??'],[1290,224,132,124,'cell 0.88'],[1053,375,158,147,'??'],[728,480,296,218,'human 0.41'],[1603,357,94,90,'??'],[1185,720,110,102,'AI 0.57'],[1363,503,359,431,'identity ??']],i=0;
-function go(){var p=P[i%P.length];h.style.left=(p[0]/19.2)+'%';h.style.top=(p[1]/10.8)+'%';h.style.width=(p[2]/19.2)+'%';h.style.height=(p[3]/10.8)+'%';h.firstChild.textContent=p[4];i++;}
-go();setInterval(go,2200);})();
+(function(){var C=[[0.26016,0.19816],[0.74018,0.2849],[0.64122,0.72452],[0.19004,0.8326]];
+function solve(A,b){var n=8;for(var c=0;c<n;c++){var m=c;for(var r=c+1;r<n;r++)if(Math.abs(A[r][c])>Math.abs(A[m][c]))m=r;var t=A[c];A[c]=A[m];A[m]=t;t=b[c];b[c]=b[m];b[m]=t;for(var r=c+1;r<n;r++){var f=A[r][c]/A[c][c];for(var k=c;k<n;k++)A[r][k]-=f*A[c][k];b[r]-=f*b[c];}}var x=[];for(var r=n-1;r>=0;r--){var v=b[r];for(var k=r+1;k<n;k++)v-=A[r][k]*x[k];x[r]=v/A[r][r];}return x;}
+function fit(){document.querySelectorAll('.lapm').forEach(function(box){var v=box.querySelector('video'),W=box.clientWidth,H=box.clientHeight,w=v.offsetWidth,h=v.offsetHeight;
+var src=[[0,0],[w,0],[w,h],[0,h]],dst=C.map(function(p){return[p[0]*W,p[1]*H]}),A=[],b=[];
+for(var i=0;i<4;i++){var x=src[i][0],y=src[i][1],X=dst[i][0],Y=dst[i][1];A.push([x,y,1,0,0,0,-X*x,-X*y]);b.push(X);A.push([0,0,0,x,y,1,-Y*x,-Y*y]);b.push(Y);}
+var h8=solve(A,b);v.style.transform='matrix3d('+[h8[0],h8[3],0,h8[6],h8[1],h8[4],0,h8[7],0,0,1,0,h8[2],h8[5],0,1].join(',')+')';});}
+addEventListener('resize',fit);addEventListener('load',fit);fit();})();
 
 </script>
 </body>
