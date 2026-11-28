@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>首頁提案 B</title>
+<style>
+@font-face{font-family:"Inter V";src:url(images/intertight-var.woff2) format("woff2");font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}a{color:inherit;text-decoration:none}img,video{display:block}
+:root{--bg:#f8f8f9;--ink:#1a1b22;--mute:#8b8a97;--blue:#2150e8;--pad:clamp(20px,3.2vw,48px);--ease:cubic-bezier(.16,1,.3,1)}
+body{background:var(--bg);color:var(--ink);font-family:"Inter V","Noto Sans TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(rgba(33,80,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(33,80,232,.07) 1px,transparent 1px);background-size:44px 44px}
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:var(--pad);z-index:9}
+header i{width:14px;height:14px;border-radius:50%;background:var(--blue);display:block}
+nav{display:flex;flex-direction:column;align-items:flex-end;font-size:clamp(18px,1.6vw,26px);line-height:1.2;color:var(--mute)}
+nav a:first-child{color:var(--ink)}
+.card .im{overflow:hidden;background:#ececf0}.card video,.card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}.card:hover video{transform:scale(1.04)}
+.card b{display:block;margin-top:14px;font-size:18px;font-weight:500}.card span{display:block;margin-top:3px;font-size:15px;color:var(--mute)}
+.tag{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:14px;padding:8px 14px;z-index:20}
+.b{display:grid;grid-template-columns:5fr 7fr;gap:clamp(24px,4vw,72px);height:100vh;padding:var(--pad);padding-top:16vh;align-items:end}
+.b .t h1{font-size:clamp(34px,3.6vw,60px);font-weight:500;letter-spacing:-.035em;line-height:1.1}
+.b .t p{margin-top:22px;font-size:clamp(18px,1.4vw,22px);line-height:1.6}
+.b .t small{display:block;margin-top:22px;font-size:15px;color:var(--mute)}
+.b .t ol{list-style:none;margin-top:6vh;border-top:1px solid rgba(26,27,34,.15)}
+.b .t li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(26,27,34,.15);font-size:17px;cursor:pointer;color:var(--mute);transition:color .3s}
+.b .t li.on{color:var(--ink)}.b .t li.on:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue);margin:8px 10px 0 0}
+.b .t li span:first-child{flex:1}
+.b .v{height:100%;max-height:78vh;position:relative;overflow:hidden;background:#ececf0}
+.b .v video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s}.b .v video.on{opacity:1}
+</style></head><body><header><i></i><nav><a>UI / UX</a><a>Visual Design</a><a>About</a></nav></header>
+<main class="b"><div class="t"><h1>嗨，我是楊芷翎</h1><p>媒體設計出身的 UX 設計師，用研究找出問題，再用視覺把答案說清楚。</p><small>政大數位內容碩士 · Jubo 智齡科技 UX 實習 1 年 · OpenHCI '26 主視覺設計</small><ol><li data-i="0" class=on><span>OPENPOINT Redesign</span><span>UX Research</span></li><li data-i="1"><span>丟丟 TossTalk</span><span>UI Design</span></li><li data-i="2"><span>Tabelog 再設計</span><span>UX Research</span></li><li data-i="3"><span>(AI)dentity</span><span>Visual Identity</span></li></ol></div>
+<div class="v"><video class=on src="images/mk-op.mp4" autoplay muted loop playsinline></video><video src="images/mk-tt.mp4" autoplay muted loop playsinline></video><video src="images/mk-tb.mp4" autoplay muted loop playsinline></video><video src="images/aid-motion.mp4" autoplay muted loop playsinline></video></div></main>
+<div class="tag">提案 B｜左文字・右主打作品</div>
+<script>var L=document.querySelectorAll('.b li'),V=document.querySelectorAll('.b video'),i=0;function s(n){i=n;L.forEach(function(l,k){l.classList.toggle('on',k==n)});V.forEach(function(v,k){v.classList.toggle('on',k==n)})}L.forEach(function(l,k){l.onmouseenter=function(){s(k)}});setInterval(function(){s((i+1)%L.length)},4000);</script></body></html>

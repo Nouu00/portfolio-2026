@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>首頁提案 D3</title>
+<style>
+@font-face{font-family:"Inter V";src:url(images/intertight-var.woff2) format("woff2");font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}a{color:inherit;text-decoration:none}img,video{display:block}
+:root{--bg:#f8f8f9;--ink:#1a1b22;--mute:#8b8a97;--blue:#2150e8;--pad:clamp(20px,3.2vw,48px);--ease:cubic-bezier(.16,1,.3,1)}
+body{background:var(--bg);color:var(--ink);font-family:"Inter V","Noto Sans TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(rgba(33,80,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(33,80,232,.07) 1px,transparent 1px);background-size:44px 44px}
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:var(--pad);z-index:9}
+header i{width:14px;height:14px;border-radius:50%;background:var(--blue);display:block}
+nav{display:flex;flex-direction:column;align-items:flex-end;font-size:clamp(18px,1.6vw,26px);line-height:1.2;color:var(--mute)}
+nav a:first-child{color:var(--ink)}
+.card .im{overflow:hidden;background:#ececf0}.card video,.card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}.card:hover video{transform:scale(1.04)}
+.card b{display:block;margin-top:14px;font-size:18px;font-weight:500}.card span{display:block;margin-top:3px;font-size:15px;color:var(--mute)}
+.tag{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:14px;padding:8px 14px;z-index:20}
+.d h1{font-size:clamp(40px,5vw,88px);font-weight:500;letter-spacing:-.045em;line-height:1.1}
+.d h1 .sw{display:inline-block;color:var(--blue)}.d h1 .sw i{font-style:normal;display:inline-block;transition:opacity .45s,transform .7s var(--ease)}
+.d h1 .q{color:var(--mute);font-weight:400;transition:opacity .45s}
+.cred{font-size:16px;line-height:1.7;color:var(--mute)}
+.d{height:100vh;display:grid;grid-template-columns:7fr 5fr;gap:clamp(24px,4vw,72px);padding:18vh var(--pad) var(--pad);align-items:end}
+.d .l{align-self:stretch;display:flex;flex-direction:column;justify-content:space-between}
+.d .r{position:relative;align-self:end}
+.d .r .im{aspect-ratio:4/3;position:relative;overflow:hidden;background:#ececf0}
+.d .r video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .7s,transform 1.2s var(--ease)}
+.d .r video.on{opacity:1;transform:none}
+.d .r .cap{display:flex;justify-content:space-between;margin-top:14px;font-size:18px;font-weight:500}
+.d .r .cap span{color:var(--mute);font-size:15px;font-weight:400}
+.d .r .dots{display:flex;gap:8px;margin-top:18px}.d .r .dots i{width:28px;height:2px;background:rgba(26,27,34,.15)}.d .r .dots i.on{background:var(--blue)}
+</style></head><body><header><i></i><nav><a>UI / UX</a><a>Visual Design</a><a>About</a></nav></header>
+<main class="d"><div class="l"><h1>嗨，我是楊芷翎。<br><span class="q" id="q">使用者卡在哪裡？</span><br>我用 <span class="sw"><i id="a">UX Research</i></span> 回答。</h1><p class="cred">媒體設計出身的 UX 設計師<br>政大數位內容碩士 · Jubo 智齡科技 UX 實習 1 年 · OpenHCI '26 主視覺設計</p></div><a class="r" id="r" href="openpoint.html"><div class="im"><video class=on src="images/mk-op.mp4" muted loop playsinline autoplay></video><video src="images/mk-tt.mp4" muted loop playsinline autoplay></video><video src="images/mk-tb.mp4" muted loop playsinline autoplay></video><video src="images/aid-motion.mp4" muted loop playsinline autoplay></video></div><div class="cap"><b id="t">OPENPOINT Redesign</b><span>看作品 →</span></div><div class="dots"><i class=on></i><i></i><i></i><i></i></div></a></main>
+<div class="tag">提案 D3｜關鍵字＝作品（答案連到作品）</div>
+<script>var P=[['使用者卡在哪裡？','UX Research',0],['介面看不懂？','UI Design',1],['品牌沒有記憶點？','Visual Identity',3],['想法要能動？','Prototype',2]],k=0,q=document.getElementById('q'),a=document.getElementById('a');
+function swap(){k=(k+1)%P.length;a.style.opacity=0;a.style.transform='translateY(.3em)';q.style.opacity=0;setTimeout(function(){q.textContent=P[k][0];a.textContent=P[k][1];a.style.opacity=1;a.style.transform='none';q.style.opacity=1;if(window.onSwap)onSwap(P[k][2])},450)}
+setInterval(swap,3000);var R=document.getElementById('r'),vs=R.querySelectorAll('video'),ds=R.querySelectorAll('.dots i'),T=document.getElementById('t'),W=[["OPENPOINT Redesign", "openpoint.html"], ["丟丟 TossTalk", "tosstalk.html"], ["Tabelog 再設計", "tabelog.html"], ["(AI)dentity", "aidentity.html"]];
+window.onSwap=function(n){vs.forEach(function(v,k){v.classList.toggle('on',k==n)});ds.forEach(function(d,k){d.classList.toggle('on',k==n)});T.textContent=W[n][0];R.href=W[n][1]};</script></body></html>

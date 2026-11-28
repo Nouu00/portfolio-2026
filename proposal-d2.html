@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>首頁提案 D2</title>
+<style>
+@font-face{font-family:"Inter V";src:url(images/intertight-var.woff2) format("woff2");font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}a{color:inherit;text-decoration:none}img,video{display:block}
+:root{--bg:#f8f8f9;--ink:#1a1b22;--mute:#8b8a97;--blue:#2150e8;--pad:clamp(20px,3.2vw,48px);--ease:cubic-bezier(.16,1,.3,1)}
+body{background:var(--bg);color:var(--ink);font-family:"Inter V","Noto Sans TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(rgba(33,80,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(33,80,232,.07) 1px,transparent 1px);background-size:44px 44px}
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:var(--pad);z-index:9}
+header i{width:14px;height:14px;border-radius:50%;background:var(--blue);display:block}
+nav{display:flex;flex-direction:column;align-items:flex-end;font-size:clamp(18px,1.6vw,26px);line-height:1.2;color:var(--mute)}
+nav a:first-child{color:var(--ink)}
+.card .im{overflow:hidden;background:#ececf0}.card video,.card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}.card:hover video{transform:scale(1.04)}
+.card b{display:block;margin-top:14px;font-size:18px;font-weight:500}.card span{display:block;margin-top:3px;font-size:15px;color:var(--mute)}
+.tag{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:14px;padding:8px 14px;z-index:20}
+.d h1{font-size:clamp(40px,5vw,88px);font-weight:500;letter-spacing:-.045em;line-height:1.1}
+.d h1 .sw{display:inline-block;color:var(--blue)}.d h1 .sw i{font-style:normal;display:inline-block;transition:opacity .45s,transform .7s var(--ease)}
+.d h1 .q{color:var(--mute);font-weight:400;transition:opacity .45s}
+.cred{font-size:16px;line-height:1.7;color:var(--mute)}
+.d{height:100vh;display:flex;flex-direction:column;padding-top:18vh}
+.d .top{display:flex;justify-content:space-between;align-items:end;gap:40px;padding:0 var(--pad)}
+.mq{margin-top:auto;margin-bottom:var(--pad);overflow:hidden}
+.mq .tr{display:flex;gap:16px;width:max-content;animation:mq 46s linear infinite}
+.mq:hover .tr{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mq .card{width:clamp(280px,26vw,420px)}.mq .im{aspect-ratio:4/3}
+.mq .card b{font-size:16px}.mq .card span{font-size:14px}
+</style></head><body><header><i></i><nav><a>UI / UX</a><a>Visual Design</a><a>About</a></nav></header>
+<main class="d"><div class="top"><h1>嗨，我是楊芷翎。<br><span class="q" id="q">使用者卡在哪裡？</span><br>我用 <span class="sw"><i id="a">UX Research</i></span> 回答。</h1><p class="cred">媒體設計出身的 UX 設計師<br>政大數位內容碩士 · Jubo 智齡科技 UX 實習 1 年 · OpenHCI '26 主視覺設計</p></div><div class="mq"><div class="tr"><a class="card " href="openpoint.html"><div class="im"><video src="images/mk-op.mp4" poster="images/mk-op.jpg" autoplay muted loop playsinline></video></div><b>OPENPOINT Redesign</b><span>UX Research · UI Design</span></a><a class="card " href="tosstalk.html"><div class="im"><video src="images/mk-tt.mp4" poster="images/mk-tt.jpg" autoplay muted loop playsinline></video></div><b>丟丟 TossTalk</b><span>UI Design · 黑客松</span></a><a class="card " href="tabelog.html"><div class="im"><video src="images/mk-tb.mp4" poster="images/mk-tb.jpg" autoplay muted loop playsinline></video></div><b>Tabelog 再設計</b><span>UX Research · UI Design</span></a><a class="card " href="aidentity.html"><div class="im"><video src="images/aid-motion.mp4" poster="images/aid-motion.jpg" autoplay muted loop playsinline></video></div><b>(AI)dentity</b><span>Visual Identity · Motion</span></a><a class="card " href="openpoint.html"><div class="im"><video src="images/mk-op.mp4" poster="images/mk-op.jpg" autoplay muted loop playsinline></video></div><b>OPENPOINT Redesign</b><span>UX Research · UI Design</span></a><a class="card " href="tosstalk.html"><div class="im"><video src="images/mk-tt.mp4" poster="images/mk-tt.jpg" autoplay muted loop playsinline></video></div><b>丟丟 TossTalk</b><span>UI Design · 黑客松</span></a><a class="card " href="tabelog.html"><div class="im"><video src="images/mk-tb.mp4" poster="images/mk-tb.jpg" autoplay muted loop playsinline></video></div><b>Tabelog 再設計</b><span>UX Research · UI Design</span></a><a class="card " href="aidentity.html"><div class="im"><video src="images/aid-motion.mp4" poster="images/aid-motion.jpg" autoplay muted loop playsinline></video></div><b>(AI)dentity</b><span>Visual Identity · Motion</span></a></div></div></main>
+<div class="tag">提案 D2｜作品影片跑馬燈</div>
+<script>var P=[['使用者卡在哪裡？','UX Research',0],['介面看不懂？','UI Design',1],['品牌沒有記憶點？','Visual Identity',3],['想法要能動？','Prototype',2]],k=0,q=document.getElementById('q'),a=document.getElementById('a');
+function swap(){k=(k+1)%P.length;a.style.opacity=0;a.style.transform='translateY(.3em)';q.style.opacity=0;setTimeout(function(){q.textContent=P[k][0];a.textContent=P[k][1];a.style.opacity=1;a.style.transform='none';q.style.opacity=1;if(window.onSwap)onSwap(P[k][2])},450)}
+setInterval(swap,3000);</script></body></html>
